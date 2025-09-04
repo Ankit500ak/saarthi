@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.env
+.env
+env/
+venv/
+ENV/
+
+# Django
+*.sqlite3
+*.log
+staticfiles/
+media/
+
+# Node
+node_modules/
+build/
+dist/
+
+# VS Code
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Misc
+*.bak
+*.swp
+*.swo
+
+# React
+frontend/node_modules/
+frontend/build/
+
+# Fixtures
+*.json
+!saarthi/saarthi/core/fixtures/sample_data.json
