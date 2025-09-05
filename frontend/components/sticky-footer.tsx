@@ -54,11 +54,11 @@ export function StickyFooter() {
           <div className="relative overflow-hidden">
             {/* Subtle Background Pattern */}
             <div className="absolute inset-0 opacity-30">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(21,128,61,0.05)_1px,transparent_1px)] bg-[length:40px_40px]" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(21,128,61,0.07)_1px,transparent_1px)] bg-[length:32px_32px]" />
             </div>
 
-            <div className="relative z-10 max-w-7xl mx-auto px-4 py-4 md:px-6 md:py-6">
-              <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
+            <div className="relative z-10 max-w-7xl mx-auto px-6 py-8 md:px-12 md:py-12">
+              <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 md:gap-10">
                 {/* Brand Column - Simplified for mobile */}
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
@@ -66,37 +66,37 @@ export function StickyFooter() {
                   transition={{ duration: 0.6, delay: 0.1 }}
                   className="lg:col-span-2 md:col-span-3"
                 >
-                  <div className="flex items-center gap-2 mb-3">
-                    <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                      <span className="text-lg font-black text-primary-foreground">S</span>
+                  <div className="flex items-center gap-3 mb-5">
+                    <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center shadow-lg">
+                      <span className="text-2xl font-black text-primary-foreground">S</span>
                     </div>
                     <div>
-                      <h2 className="text-lg font-black text-foreground font-sans">Sarthi</h2>
-                      <p className="text-xs text-muted-foreground font-medium hidden md:block">AI Internship Guide</p>
+                      <h2 className="text-2xl font-black text-foreground font-sans tracking-tight">Sarthi</h2>
+                      <p className="text-sm text-muted-foreground font-medium hidden md:block">AI Internship Guide</p>
                     </div>
                   </div>
 
-                  <p className="text-foreground/80 mb-4 text-sm leading-relaxed font-medium md:max-w-md">
+                  <p className="text-foreground/90 mb-6 text-base leading-relaxed font-semibold md:max-w-lg">
                     AI-powered internship matching for students.
                   </p>
 
-                  {/* Newsletter Signup - Compact for mobile */}
-                  <div className="bg-card rounded-lg p-3 border border-border shadow-lg">
-                    <div className="flex items-center gap-2 mb-2">
-                      <Send className="w-3 h-3 text-primary" />
-                      <h3 className="text-sm font-bold text-card-foreground">Stay Updated</h3>
+                  {/* Newsletter Signup - Bolder and bigger */}
+                  <div className="bg-card rounded-xl p-5 border-2 border-primary/30 shadow-2xl">
+                    <div className="flex items-center gap-3 mb-3">
+                      <Send className="w-5 h-5 text-primary" />
+                      <h3 className="text-lg font-bold text-card-foreground tracking-tight">Stay Updated</h3>
                     </div>
-                    <form onSubmit={handleNewsletterSubmit} className="flex gap-2">
+                    <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-3">
                       <Input
                         type="email"
-                        placeholder="Your email"
+                        placeholder="Your email address"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        className="flex-1 bg-input border-border h-8 text-sm"
+                        className="flex-1 bg-input border-2 border-primary/20 h-12 text-base px-4"
                         required
                       />
-                      <Button type="submit" className="bg-primary hover:bg-primary/90 text-primary-foreground px-3 h-8">
-                        <ArrowRight className="w-3 h-3" />
+                      <Button type="submit" className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 h-12 text-base font-bold rounded-lg shadow-md">
+                        <ArrowRight className="w-5 h-5" />
                       </Button>
                     </form>
                   </div>
@@ -159,24 +159,24 @@ export function StickyFooter() {
                   transition={{ duration: 0.6, delay: 0.4 }}
                   className="md:block"
                 >
-                  <div className="flex items-center gap-2 mb-3">
-                    <Mail className="w-3 h-3 text-primary" />
-                    <h3 className="text-sm font-bold text-foreground">Connect</h3>
+                  <div className="flex items-center gap-3 mb-4">
+                    <Mail className="w-5 h-5 text-primary" />
+                    <h3 className="text-lg font-bold text-foreground">Connect</h3>
                   </div>
 
-                  {/* Contact Info - Simplified for mobile */}
-                  <div className="space-y-1 mb-3">
-                    <div className="flex items-center gap-2 text-muted-foreground text-xs">
-                      <Mail className="w-3 h-3 text-primary" />
+                  {/* Contact Info - Bolder */}
+                  <div className="space-y-2 mb-4">
+                    <div className="flex items-center gap-3 text-muted-foreground text-base font-semibold">
+                      <Mail className="w-5 h-5 text-primary" />
                       <span className="hidden md:inline">hello@sarthi.ai</span>
                       <span className="md:hidden">Contact</span>
                     </div>
                   </div>
 
-                  {/* Social Links - Compact */}
+                  {/* Social Links - Larger and more prominent */}
                   <div>
-                    <p className="text-xs font-semibold text-foreground mb-2">Follow</p>
-                    <div className="flex gap-1">
+                    <p className="text-base font-bold text-foreground mb-3">Follow</p>
+                    <div className="flex gap-2">
                       {[
                         { icon: Twitter, href: "#", label: "Twitter" },
                         { icon: Linkedin, href: "#", label: "LinkedIn" },
@@ -186,10 +186,10 @@ export function StickyFooter() {
                         <a
                           key={label}
                           href={href}
-                          className="w-7 h-7 bg-card border border-border rounded-md flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/5 hover:border-primary/20 transition-all duration-200"
+                          className="w-10 h-10 bg-card border-2 border-primary/20 rounded-xl flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 hover:border-primary/40 transition-all duration-200 shadow-md"
                           aria-label={label}
                         >
-                          <Icon className="w-3 h-3" />
+                          <Icon className="w-5 h-5" />
                         </a>
                       ))}
                     </div>
@@ -197,33 +197,33 @@ export function StickyFooter() {
                 </motion.div>
               </div>
 
-              {/* Bottom Bar - Simplified for mobile */}
+              {/* Bottom Bar - Bigger and bolder */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.5 }}
-                className="border-t border-border mt-4 pt-3 flex flex-col md:flex-row justify-between items-center gap-2"
+                className="border-t-2 border-primary/20 mt-8 pt-5 flex flex-col md:flex-row justify-between items-center gap-4"
               >
-                <div className="flex flex-col md:flex-row gap-2 md:gap-4 text-center md:text-left">
-                  <p className="text-muted-foreground text-xs font-medium">© 2024 Sarthi AI</p>
-                  <div className="flex gap-3 text-xs">
-                    <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+                <div className="flex flex-col md:flex-row gap-3 md:gap-8 text-center md:text-left">
+                  <p className="text-muted-foreground text-base font-semibold">© 2024 Sarthi AI</p>
+                  <div className="flex gap-5 text-base">
+                    <a href="#" className="text-muted-foreground hover:text-primary transition-colors font-semibold">
                       Privacy
                     </a>
-                    <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+                    <a href="#" className="text-muted-foreground hover:text-primary transition-colors font-semibold">
                       Terms
                     </a>
                   </div>
                 </div>
-                <p className="text-muted-foreground text-xs font-medium hidden md:block">
-                  Empowering careers through AI
+                <p className="text-muted-foreground text-base font-semibold hidden md:block">
+                  Empowering careers through <span className="text-primary font-bold">AI</span>
                 </p>
               </motion.div>
             </div>
 
-            {/* Decorative Element */}
+            {/* Decorative Element - bigger */}
             <motion.div
-              className="absolute bottom-0 right-0 translate-y-1/4 translate-x-1/4 w-64 h-64 bg-primary/5 rounded-full blur-3xl pointer-events-none"
+              className="absolute bottom-0 right-0 translate-y-1/4 translate-x-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl pointer-events-none"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, delay: 0.6 }}
