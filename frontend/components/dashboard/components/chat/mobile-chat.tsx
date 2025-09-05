@@ -7,7 +7,7 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet";
+} from "../ui/sheet";
 import { MobileChatContent } from "./mobile-chat-content";
 import { Button } from "../ui/button";
 import { ChatStatusIndicator } from "./chat-status-indicator";

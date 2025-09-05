@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { Button } from "@/components/ui/button";
+import { Button } from "../ui/button";
 import type { ChatConversation } from "@/types/chat";
 import { mockChatData } from "@/data/chat-mock";
 import ChatContact from "./chat-contact";

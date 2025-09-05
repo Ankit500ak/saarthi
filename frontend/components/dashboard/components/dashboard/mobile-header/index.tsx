@@ -1,12 +1,12 @@
 import * as React from "react";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { SidebarTrigger } from "@/components/ui/sidebar";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import MonkeyIcon from "@/components/icons/monkey";
-import MobileNotifications from "@/components/dashboard/notifications/mobile-notifications";
-import type { MockData } from "@/types/dashboard";
-import BellIcon from "@/components/icons/bell";
+import { Button } from "../../ui/button";
+import { Badge } from "../../ui/badge";
+import { SidebarTrigger } from "../../ui/sidebar";
+import { Sheet, SheetContent, SheetTrigger } from "../../ui/sheet";
+import MonkeyIcon from "../icons/monkey";
+import MobileNotifications from "../notifications/mobile-notifications";
+import type { MockData } from "../../../types/dashboard";
+import BellIcon from "../icons/bell";
 
 interface MobileHeaderProps {
   mockData: MockData;

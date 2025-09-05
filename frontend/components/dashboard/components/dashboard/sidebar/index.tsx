@@ -15,25 +15,25 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarRail,
-} from "@/components/ui/sidebar";
+} from "../../ui/sidebar";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover";
+} from "../../ui/popover";
 import { cn } from "@/lib/utils";
-import AtomIcon from "@/components/icons/atom";
-import BracketsIcon from "@/components/icons/brackets";
-import ProcessorIcon from "@/components/icons/proccesor";
-import CuteRobotIcon from "@/components/icons/cute-robot";
-import EmailIcon from "@/components/icons/email";
-import GearIcon from "@/components/icons/gear";
-import MonkeyIcon from "@/components/icons/monkey";
-import DotsVerticalIcon from "@/components/icons/dots-vertical";
-import { Bullet } from "@/components/ui/bullet";
-import LockIcon from "@/components/icons/lock";
+import AtomIcon from "../icons/atom";
+import BracketsIcon from "../icons/brackets";
+import ProcessorIcon from "../icons/proccesor";
+import CuteRobotIcon from "../icons/cute-robot";
+import EmailIcon from "../icons/email";
+import GearIcon from "../icons/gear";
+import MonkeyIcon from "../icons/monkey";
+import DotsVerticalIcon from "../icons/dots-vertical";
+import { Bullet } from "../../ui/bullet";
+import LockIcon from "../icons/lock";
 import Image from "next/image";
-import { useIsV0 } from "@/lib/v0-context";
+import { useIsV0 } from "../../../lib/v0-context";
 
 // This is sample data for the sidebar
 const data = {

@@ -2,16 +2,16 @@
 
 import React from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
+import { Button } from "../ui/button";
+import { Separator } from "../ui/separator";
 import { cn } from "@/lib/utils";
 import { useChatState } from "./use-chat-state";
 import { mockChatData } from "@/data/chat-mock";
 import { ChatStatusIndicator } from "./chat-status-indicator";
 import PlusIcon from "../icons/plus";
 import MinusIcon from "../icons/minus";
-import ArrowLeftIcon from "../icons/arrow-left";
-import { useIsV0 } from "@/lib/v0-context";
+import { ArrowLeft } from "lucide-react";
+import { useIsV0 } from "../../../lib/v0-context";
 
 interface ChatHeaderProps {
   onClick?: () => void;
@@ -92,7 +92,7 @@ export function ChatHeader({
               onClick={handleBackClick}
               className="text-foreground/50 p-1 pr-3"
             >
-              <ArrowLeftIcon className="size-5" />
+              <ArrowLeft className="size-5" />
             </Button>
             <Separator
               orientation="vertical"

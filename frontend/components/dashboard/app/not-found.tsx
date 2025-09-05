@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
-import DashboardPageLayout from "@/components/dashboard/layout";
-import CuteRobotIcon from "@/components/icons/cute-robot";
+import DashboardPageLayout from "../components/dashboard/layout";
+import CuteRobotIcon from "../components/icons/cute-robot";
 
 export default function NotFound() {
   return (

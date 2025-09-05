@@ -1,11 +1,11 @@
 import { motion, AnimatePresence } from "motion/react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { Button } from "../ui/button";
+import { Input } from "../ui/input";
 import { cn } from "@/lib/utils";
 import type { ChatConversation as ChatConversationType } from "@/types/chat";
 import { formatDate, formatTime } from "./utils";
 import type { ChatMessage as ChatMessageType } from "@/types/chat";
-import ArrowRightIcon from "../icons/arrow-right";
+import { ArrowRight } from "lucide-react";
 import { Badge } from "../ui/badge";
 
 const MESSAGE_GROUP_THRESHOLD = 3 * 60 * 1000; // 3 minutes in milliseconds
@@ -173,7 +173,7 @@ export default function ChatConversation({
           disabled={!newMessage.trim()}
           className="absolute right-1.5 top-1.5 h-8 w-12 p-0"
         >
-          <ArrowRightIcon className="w-4 h-4" />
+          <ArrowRight className="w-4 h-4" />
         </Button>
       </div>
     </motion.div>

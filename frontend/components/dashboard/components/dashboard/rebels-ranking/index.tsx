@@ -1,6 +1,6 @@
-import { Badge } from "@/components/ui/badge";
-import DashboardCard from "@/components/dashboard/card";
-import type { RebelRanking } from "@/types/dashboard";
+import { Badge } from "../../ui/badge";
+import DashboardCard from "../card";
+import type { RebelRanking } from "../../../types/dashboard";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 

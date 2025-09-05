@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import type React from "react"
 
 import { useState, useEffect } from "react"
-import { Github, Twitter, Linkedin, Mail, BookOpen, Users, Send, ArrowRight } from "lucide-react"
+import { Github, Twitter, Linkedin, Mail, BookOpen, Users, Send } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 
@@ -113,7 +113,7 @@ export function StickyFooter() {
                         required
                       />
                       <Button type="submit" className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 h-12 text-base font-bold rounded-lg shadow-md">
-                        <ArrowRight className="w-5 h-5" />
+                        <Send className="w-5 h-5" />
                       </Button>
                     </form>
                   </div>

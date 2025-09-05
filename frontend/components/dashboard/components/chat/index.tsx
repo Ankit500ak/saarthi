@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Button } from "@/components/ui/button";
+import { Button } from "../ui/button";
 import { useChatState } from "./use-chat-state";
 import PlusIcon from "../icons/plus";
 import ChatPreview from "./chat-preview";

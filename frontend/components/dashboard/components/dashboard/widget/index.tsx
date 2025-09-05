@@ -1,10 +1,10 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import TVNoise from "@/components/ui/tv-noise";
-import type { WidgetData } from "@/types/dashboard";
+import { Card, CardContent } from "../../ui/card";
+import { Badge } from "../../ui/badge";
+import TVNoise from "../../ui/tv-noise";
+import type { WidgetData } from "../../../types/dashboard";
 import Image from "next/image";
 
 interface WidgetProps {

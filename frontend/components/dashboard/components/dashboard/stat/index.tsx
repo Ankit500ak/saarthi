@@ -1,8 +1,8 @@
 import React from "react";
 import NumberFlow from "@number-flow/react";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Bullet } from "@/components/ui/bullet";
+import { Card, CardHeader, CardTitle, CardContent } from "../../ui/card";
+import { Badge } from "../../ui/badge";
+import { Bullet } from "../../ui/bullet";
 import { cn } from "@/lib/utils";
 
 interface DashboardStatProps {

@@ -8,11 +8,11 @@ import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "@/components/ui/chart";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import mockDataJson from "@/mock.json";
-import { Bullet } from "@/components/ui/bullet";
-import type { MockData, TimePeriod } from "@/types/dashboard";
+} from "../../ui/chart";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../ui/tabs";
+import mockDataJson from "../../../mock.json";
+import { Bullet } from "../../ui/bullet";
+import type { MockData, TimePeriod } from "../../../types/dashboard";
 
 const mockData = mockDataJson as MockData;
 
