@@ -10,8 +10,15 @@ import { Input } from "@/components/ui/input"
 export function StickyFooter() {
   const [isAtBottom, setIsAtBottom] = useState(false)
   const [email, setEmail] = useState("")
+  const [mounted, setMounted] = useState(false) // <-- add this
 
   useEffect(() => {
+    setMounted(true) // <-- set mounted to true after hydration
+  }, [])
+
+  useEffect(() => {
+    if (!mounted) return // <-- don't run scroll logic until mounted
+
     let ticking = false
 
     const handleScroll = () => {
@@ -32,7 +39,7 @@ export function StickyFooter() {
     window.addEventListener("scroll", handleScroll, { passive: true })
     handleScroll()
     return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+  }, [mounted]) // <-- depend on mounted
 
   const handleNewsletterSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -43,7 +50,7 @@ export function StickyFooter() {
 
   return (
     <AnimatePresence>
-      {isAtBottom && (
+      {mounted && isAtBottom && ( // <-- only render after mounted
         <motion.div
           className="fixed z-50 bottom-0 left-0 w-full bg-background border-t border-border shadow-2xl"
           initial={{ y: "100%" }}
@@ -64,21 +71,31 @@ export function StickyFooter() {
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.1 }}
-                  className="lg:col-span-2 md:col-span-3"
+                  className="lg:col-span-2 md:col-span-3 pl-0 md:pl-4" // <-- add left padding for left shift
                 >
                   <div className="flex items-center gap-3 mb-5">
-                    <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center shadow-lg">
-                      <span className="text-2xl font-black text-primary-foreground">S</span>
+                    <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center shadow-lg"> {/* reduced size */}
+                      <span className="text-xl font-black text-primary-foreground">S</span> {/* reduced font size */}
                     </div>
                     <div>
-                      <h2 className="text-2xl font-black text-foreground font-sans tracking-tight">Sarthi</h2>
-                      <p className="text-sm text-muted-foreground font-medium hidden md:block">AI Internship Guide</p>
+                      <h2 className="text-xl font-black text-foreground font-sans tracking-tight">Sarthi</h2> {/* reduced font size */}
+                      <p className="text-xs text-muted-foreground font-medium hidden md:block">AI Internship Guide</p> {/* reduced font size */}
                     </div>
                   </div>
 
                   <p className="text-foreground/90 mb-6 text-base leading-relaxed font-semibold md:max-w-lg">
                     AI-powered internship matching for students.
                   </p>
+
+                  {/* Compact view: Move Login behind Join Sarthi */}
+                  <div className="flex flex-col sm:flex-row gap-2 mb-4 md:hidden">
+                    <Button className="bg-primary text-primary-foreground font-bold rounded-lg shadow-md w-full">
+                      Join Sarthi
+                    </Button>
+                    <Button variant="outline" className="w-full order-2">
+                      Login
+                    </Button>
+                  </div>
 
                   {/* Newsletter Signup - Bolder and bigger */}
                   <div className="bg-card rounded-xl p-5 border-2 border-primary/30 shadow-2xl">
@@ -103,18 +120,14 @@ export function StickyFooter() {
                 </motion.div>
 
                 {/* Resources Column - Hidden on mobile, shown on md+ */}
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                  className="hidden md:block"
-                >
+                <div className="hidden md:block">
                   <div className="flex items-center gap-2 mb-3">
                     <BookOpen className="w-3 h-3 text-primary" />
                     <h3 className="text-sm font-bold text-foreground">Resources</h3>
                   </div>
+                  <h3 className="text-base font-bold text-foreground mb-2">How Sarthi Works</h3>
                   <ul className="space-y-1">
-                    {["How It Works", "Success Stories", "Interview Tips", "Career Guide"].map((item) => (
+                    {["Success Stories", "Interview Tips", "Career Guide"].map((item) => (
                       <li key={item}>
                         <a
                           href="#"
@@ -125,7 +138,7 @@ export function StickyFooter() {
                       </li>
                     ))}
                   </ul>
-                </motion.div>
+                </div>
 
                 {/* Company Column - Hidden on mobile, shown on md+ */}
                 <motion.div

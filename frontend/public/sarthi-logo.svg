@@ -1,0 +1,11 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="sarthi-gradient" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#e78a53"/>
+      <stop offset="1" stop-color="#f5c16c"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="#18181b"/>
+  <path d="M44 20C44 14.4772 39.5228 10 34 10H30C20.0589 10 12 18.0589 12 28C12 37.9411 20.0589 46 30 46H34C36.2091 46 38 47.7909 38 50C38 52.2091 36.2091 54 34 54H30C28.8954 54 28 54.8954 28 56C28 57.1046 28.8954 58 30 58H34C41.732 58 48 51.732 48 44C48 36.268 41.732 30 34 30H30C27.7909 30 26 28.2091 26 26C26 23.7909 27.7909 22 30 22H34C35.1046 22 36 21.1046 36 20C36 18.8954 35.1046 18 34 18H30C28.8954 18 28 17.1046 28 16C28 14.8954 28.8954 14 30 14H34C37.3137 14 40 16.6863 40 20" stroke="url(#sarthi-gradient)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="50%" y="85%" text-anchor="middle" fill="#e78a53" font-size="12" font-family="sans-serif" font-weight="bold">Sarthi</text>
+</svg>

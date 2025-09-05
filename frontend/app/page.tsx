@@ -8,6 +8,7 @@ import { FAQSection } from "@/components/faq-section"
 import { StickyFooter } from "@/components/sticky-footer"
 import HowSarthiWorks from "@/components/how-sarthi-works"
 import { SarthiLogo } from "@/components/sarthi-logo"
+import Link from "next/link"
 
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -155,19 +156,21 @@ export default function Home() {
         </div>
 
         <div className="flex items-center gap-4">
-          <a
+          <Link
             href="/login"
-            className="font-medium transition-colors hover:text-foreground text-muted-foreground text-sm cursor-pointer"
+            className="rounded-md font-bold relative cursor-pointer inline-block text-center border border-primary text-primary px-4 py-2 text-sm bg-background hover:bg-primary hover:text-white transition-colors duration-200 shadow-sm"
+            prefetch={false}
           >
             Log In
-          </a>
+          </Link>
 
-          <a
+          <Link
             href="/signup"
             className="rounded-md font-bold relative cursor-pointer hover:-translate-y-0.5 transition duration-200 inline-block text-center bg-gradient-to-b from-primary to-primary/80 text-white shadow-[0px_2px_0px_0px_rgba(255,255,255,0.3)_inset] px-4 py-2 text-sm"
+            prefetch={false}
           >
             Join Sarthi
-          </a>
+          </Link>
         </div>
       </header>
 
@@ -224,18 +227,18 @@ export default function Home() {
                 FAQ
               </button>
               <div className="border-t border-border/50 pt-4 mt-4 flex flex-col space-y-3">
-                <a
+                <Link
                   href="/login"
                   className="px-4 py-3 text-lg font-medium text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-background/50 cursor-pointer"
                 >
                   Log In
-                </a>
-                <a
+                </Link>
+                <Link
                   href="/signup"
                   className="px-4 py-3 text-lg font-bold text-center bg-gradient-to-b from-primary to-primary/80 text-white rounded-lg shadow-lg hover:-translate-y-0.5 transition-all duration-200"
                 >
                   Join Sarthi
-                </a>
+                </Link>
               </div>
             </nav>
           </div>

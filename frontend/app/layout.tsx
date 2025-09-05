@@ -17,17 +17,9 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className="dark">
-      <head>
-        <style>{`
-html {
-  font-family: ${GeistSans.style.fontFamily};
-  --font-sans: ${GeistSans.variable};
-  --font-mono: ${GeistMono.variable};
-}
-        `}</style>
-      </head>
-      <body className="dark">{children}</body>
+    <html lang="en" className={`${GeistSans.className} ${GeistMono.className}`}>
+      <head />
+      <body>{children}</body>
     </html>
   )
 }
