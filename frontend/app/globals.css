@@ -193,105 +193,99 @@ body {
   }
 }
 
-@keyframes marquee {
+/* Enhanced Dashboard Animations */
+@keyframes marquee-up {
   from {
-    transform: translateX(0);
+    transform: translateY(100%);
   }
   to {
-    transform: translateX(calc(-100% - var(--gap)));
+    transform: translateY(-100%);
   }
 }
 
-@keyframes marquee-vertical {
+@keyframes marquee-down {
   from {
-    transform: translateY(0);
+    transform: translateY(-100%);
   }
   to {
-    transform: translateY(calc(-100% - var(--gap)));
+    transform: translateY(100%);
   }
 }
 
-@keyframes shiny-text {
-  0%,
-  90%,
-  100% {
-    background-position: calc(-100px) 0;
-  }
-  30%,
-  60% {
-    background-position: calc(100% + 100px) 0;
-  }
-}
-
-/* Added pulse animation for AI matching visualization */
-@keyframes pulse-glow {
-  0%,
-  100% {
-    box-shadow: 0 0 20px rgba(21, 128, 61, 0.3);
+@keyframes marquee-pulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(0.8);
   }
   50% {
-    box-shadow: 0 0 40px rgba(21, 128, 61, 0.6);
+    opacity: 1;
+    transform: scale(1.2);
   }
 }
 
-/* Added animations for how it works section */
-@keyframes float {
-  0%,
-  100% {
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(8, 145, 178, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(8, 145, 178, 0.6), 0 0 60px rgba(8, 145, 178, 0.4);
+  }
+}
+
+@keyframes float-gentle {
+  0%, 100% {
     transform: translateY(0px);
   }
   50% {
-    transform: translateY(-10px);
+    transform: translateY(-5px);
   }
 }
 
-@keyframes scoreCounter {
+@keyframes shimmer {
   0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.1);
+    background-position: -200% 0;
   }
   100% {
-    transform: scale(1);
+    background-position: 200% 0;
   }
 }
 
-@keyframes leaderboardPulse {
-  0%,
-  100% {
-    box-shadow: 0 0 0 0 rgba(236, 72, 153, 0.4);
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
   }
   50% {
-    box-shadow: 0 0 0 10px rgba(236, 72, 153, 0);
+    background-position: 100% 50%;
   }
 }
 
-.animate-marquee {
-  animation: marquee var(--duration) linear infinite;
+.animate-marquee-up {
+  animation: marquee-up 2s linear infinite;
 }
 
-.animate-marquee-vertical {
-  animation: marquee-vertical var(--duration) linear infinite;
+.animate-marquee-down {
+  animation: marquee-down 2s linear infinite;
 }
 
-.animate-shiny-text {
-  animation: shiny-text 3s ease-in-out infinite;
+.animate-marquee-pulse {
+  animation: marquee-pulse 2s ease-in-out infinite;
 }
 
-/* Added pulse glow animation class */
-.animate-pulse-glow {
-  animation: pulse-glow 2s ease-in-out infinite;
+.animate-glow-pulse {
+  animation: glow-pulse 3s ease-in-out infinite;
 }
 
-.animate-float {
-  animation: float 3s ease-in-out infinite;
+.animate-float-gentle {
+  animation: float-gentle 4s ease-in-out infinite;
 }
 
-.animate-score-counter {
-  animation: scoreCounter 2s ease-in-out infinite;
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
 }
 
-.animate-leaderboard-pulse {
-  animation: leaderboardPulse 2s ease-in-out infinite;
+.animate-gradient-shift {
+  background-size: 200% 200%;
+  animation: gradient-shift 4s ease infinite;
 }
