@@ -36,7 +36,3 @@ Thumbs.db
 # React
 frontend/node_modules/
 frontend/build/
-
-# Fixtures
-*.json
-!saarthi/saarthi/core/fixtures/sample_data.json
