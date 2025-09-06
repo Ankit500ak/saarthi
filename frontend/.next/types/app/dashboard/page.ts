@@ -1,4 +1,4 @@
-// File: C:\Users\Admin\Desktop\saarthi\frontend\app\dashboard\page.tsx
+// File: C:\Users\Naman Sharma\Documents\Django Projects\saarthi\frontend\app\dashboard\page.tsx
 import * as entry from '../../../../app/dashboard/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

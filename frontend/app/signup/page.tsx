@@ -11,7 +11,7 @@ import { Label } from "@/components/ui/label"
 
 export default function SignupPage() {
   const [formData, setFormData] = useState({
-    name: "",
+    username: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -28,14 +28,33 @@ export default function SignupPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (formData.password !== formData.confirmPassword) {
-      console.log("[v0] Password mismatch")
+      alert("Passwords do not match")
       return
     }
     setIsLoading(true)
-    // Simulate signup process
-    await new Promise((resolve) => setTimeout(resolve, 1000))
+    try {
+  const res = await fetch("http://localhost:8000/api/users/register/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: formData.username,
+          email: formData.email,
+          password: formData.password,
+        }),
+        credentials: "include",
+      })
+      const data = await res.json()
+      if (res.ok && data.redirect) {
+        window.location.href = "/dashboard"
+      } else {
+        alert(data.error || "Registration failed")
+      }
+    } catch (err) {
+      alert("An error occurred. Please try again.")
+    }
     setIsLoading(false)
-    console.log("[v0] Signup attempt:", formData)
   }
 
   return (
@@ -78,15 +97,15 @@ export default function SignupPage() {
         >
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
-              <Label htmlFor="name" className="text-white">
-                Full Name
+              <Label htmlFor="username" className="text-white">
+                Username
               </Label>
               <Input
-                id="name"
-                name="name"
+                id="username"
+                name="username"
                 type="text"
-                placeholder="Enter your full name"
-                value={formData.name}
+                placeholder="Enter your username"
+                value={formData.username}
                 onChange={handleChange}
                 className="bg-zinc-800/50 border-zinc-700 text-white placeholder:text-zinc-500 focus:border-[#e78a53] focus:ring-[#e78a53]/20"
                 required
