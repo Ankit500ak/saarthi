@@ -3,6 +3,7 @@
 import type React from "react"
 
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 import { motion } from "framer-motion"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
@@ -13,14 +14,29 @@ export default function LoginPage() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [isLoading, setIsLoading] = useState(false)
+  const [username, setUsername] = useState("")
+  const router = useRouter()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsLoading(true)
-    // Simulate login process
-    await new Promise((resolve) => setTimeout(resolve, 1000))
+    try {
+      const res = await fetch("http://localhost:8000/api/users/login/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ username, password }),
+      })
+      const data = await res.json()
+      if (res.ok && data.redirect) {
+        router.replace("/dashboard")
+      } else {
+        alert(data.error || "Login failed")
+      }
+    } catch (err) {
+      alert("An error occurred. Please try again.")
+    }
     setIsLoading(false)
-    console.log("[v0] Login attempt:", { email, password })
   }
 
   return (
@@ -63,15 +79,15 @@ export default function LoginPage() {
         >
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
-              <Label htmlFor="email" className="text-white">
-                Email
+              <Label htmlFor="username" className="text-white">
+                Username
               </Label>
               <Input
-                id="email"
-                type="email"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                id="username"
+                type="text"
+                placeholder="Enter your username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
                 className="bg-zinc-800/50 border-zinc-700 text-white placeholder:text-zinc-500 focus:border-[#e78a53] focus:ring-[#e78a53]/20"
                 required
               />

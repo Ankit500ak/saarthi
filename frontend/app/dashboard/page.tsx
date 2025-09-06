@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { Search, Filter, MapPin, Clock, DollarSign, Users, BookOpen, Star, ArrowRight, Briefcase, TrendingUp, Award, Calendar, Bell, Heart, Eye, Bookmark, Zap, Globe, Target } from 'lucide-react';
 
 const InternshipDashboard = () => {
@@ -9,11 +10,39 @@ const InternshipDashboard = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [savedInternships, setSavedInternships] = useState(new Set());
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [user, setUser] = useState<{ id: number; username: string; email: string } | null>(null);
+  const [authChecked, setAuthChecked] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 2000);
-    return () => clearTimeout(timer);
-  }, []);
+    // Check the current session user
+    const checkAuth = async () => {
+      try {
+        const res = await fetch('http://localhost:8000/api/users/me/', {
+          method: 'GET',
+          credentials: 'include',
+        });
+        if (res.status === 401) {
+          router.replace('/login');
+          return;
+        }
+        const data = await res.json();
+        if (data?.authenticated) {
+          setUser({ id: data.id, username: data.username, email: data.email });
+        } else {
+          router.replace('/login');
+          return;
+        }
+      } catch (e) {
+        router.replace('/login');
+        return;
+      } finally {
+        setAuthChecked(true);
+        setIsLoading(false);
+      }
+    };
+    checkAuth();
+  }, [router]);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -171,7 +200,7 @@ const InternshipDashboard = () => {
     setSavedInternships(newSaved);
   };
 
-  if (isLoading) {
+  if (isLoading || !authChecked) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-white via-blue-100 to-white flex items-center justify-center relative overflow-hidden">
         {/* Animated Background */}
@@ -236,7 +265,7 @@ const InternshipDashboard = () => {
                   <h1 className="text-3xl font-bold bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
                     InternVerse
                   </h1>
-                  <p className="text-gray-500 text-sm font-medium">Premium internship marketplace</p>
+                  <p className="text-gray-500 text-sm font-medium">Welcome{user ? `, ${user.username}` : ''}</p>
                 </div>
               </div>
               
@@ -257,7 +286,9 @@ const InternshipDashboard = () => {
                   </div>
                 </button>
                 
-                <div className="w-10 h-10 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-2xl border-2 border-gray-200 hover:scale-110 transition-transform duration-300 cursor-pointer"></div>
+                <div className="w-10 h-10 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-2xl border-2 border-gray-200 hover:scale-110 transition-transform duration-300 cursor-pointer flex items-center justify-center font-bold text-white">
+                  {user?.username?.[0]?.toUpperCase() ?? 'U'}
+                </div>
               </div>
             </div>
           </div>
