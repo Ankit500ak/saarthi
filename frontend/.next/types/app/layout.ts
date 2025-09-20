@@ -1,4 +1,4 @@
-// File: C:\Users\Naman Sharma\Documents\Django Projects\saarthi\frontend\app\layout.tsx
+// File: C:\Users\Admin\Downloads\saarthi\frontend\app\layout.tsx
 import * as entry from '../../../app/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
