@@ -1,30 +1,20 @@
 from django.core.paginator import Paginator
 from django.http import JsonResponse
 from django.shortcuts import render
+from .models import Internship  # Import the Internship model
 
 def internships_api(request):
     if request.method == 'GET':
-        internships = [
-            {
-                "title": "Software Engineer Intern",
-                "department": "Engineering",
-                "location": "Remote",
-                "duration": "3 months",
-                "stipend": "$1000/month",
-                "skills": ["JavaScript", "React", "Node.js"],
-                "featured": True,
-            },
-            {
-                "title": "Data Analyst Intern",
-                "department": "Data Science",
-                "location": "New York, NY",
-                "duration": "6 months",
-                "stipend": "$1200/month",
-                "skills": ["Python", "SQL", "Tableau"],
-                "featured": False,
-            },
-            # Add more internships here for testing
-        ]
+        # Fetch internships from the database
+        internships = list(Internship.objects.values(
+            "title",
+            "department",
+            "location",
+            "duration",
+            "stipend",
+            "skills",
+            "featured",
+        ))
 
         # Pagination
         page = int(request.GET.get('page', 1))

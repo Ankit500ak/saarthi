@@ -100,6 +100,7 @@ export default function Creative() {
   const [hasMore, setHasMore] = useState(true)
   const [profileDropdownOpen, setProfileDropdownOpen] = useState(false)
   const [theme, setTheme] = useState("light")
+  const [loading, setLoading] = useState(false); // State for loading spinner
 
   type Internship = {
     title: string
@@ -147,18 +148,19 @@ export default function Creative() {
   // Fetch internships from the backend API
   async function fetchInternships(page = 1) {
     try {
+      setLoading(true); // Start loading
       console.log(`Fetching internships: page=${page}`)
       const response = await fetch(`http://localhost:8000/api/internships?page=${page}&page_size=10`)
       console.log(`Response status: ${response.status}`)
       if (response.ok) {
         const data = await response.json()
-        console.log("Fetched data:", data)
+        console.log("Fetched data:", data) // Log the API response
 
         // Append new internships to the existing list
         setInternships((prev) => [...prev, ...data.internships])
 
         // Update hasMore based on API response
-        const morePagesAvailable = data.page * 10 < data.total // Ensure batch size of 10
+        const morePagesAvailable = data.page * data.page_size < data.total // Ensure batch size of 10
         setHasMore(morePagesAvailable)
         console.log("Updated hasMore:", morePagesAvailable)
       } else {
@@ -166,6 +168,8 @@ export default function Creative() {
       }
     } catch (error) {
       console.error("Error fetching internships:", error)
+    } finally {
+      setLoading(false); // Stop loading
     }
   }
 
@@ -173,7 +177,6 @@ export default function Creative() {
     fetchInternships()
   }, [])
 
-  // Add more detailed logs to debug infinite scroll
   const handleScroll = () => {
     console.log("Scroll event triggered")
     console.log("Window height + scrollTop:", window.innerHeight + document.documentElement.scrollTop)
