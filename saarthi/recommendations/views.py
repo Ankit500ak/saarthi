@@ -21,6 +21,17 @@ def internships_api(request):
         page_size = int(request.GET.get('page_size', 10))
         paginator = Paginator(internships, page_size)
 
+        # Handle invalid page numbers gracefully
+        if page > paginator.num_pages:
+            # Return empty results for pages beyond the last page
+            return JsonResponse({
+                "internships": [],
+                "total": paginator.count,
+                "page": page,
+                "page_size": page_size,
+                "has_next": False,
+            })
+        
         try:
             internships_page = paginator.page(page)
         except:

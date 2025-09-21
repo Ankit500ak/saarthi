@@ -47,7 +47,7 @@ export default function SignupPage() {
       })
       const data = await res.json()
       if (res.ok && data.redirect) {
-        window.location.href = "/dashboard"
+        window.location.href = "/profile-setup"
       } else {
         alert(data.error || "Registration failed")
       }

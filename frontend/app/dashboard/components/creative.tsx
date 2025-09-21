@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import { useTheme } from "next-themes"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card"
@@ -13,6 +14,8 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Input } from "@/components/ui/input"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuSeparator } from "@/components/ui/dropdown-menu"
+import ProfileEditModal from "./profile-edit-modal"
 import {
   Home,
   Briefcase,
@@ -80,12 +83,12 @@ const SarthiLogo = ({ className }: { className?: string }) => (
       fill="url(#textGradient)"
       fontFamily="system-ui, -apple-system, sans-serif"
     >
-      SAARTHI
+      SARTHI
     </text>
 
     {/* PM Youna subtitle */}
     <text x="45" y="28" fontSize="8" fontWeight="500" fill="#6B7280" fontFamily="system-ui, -apple-system, sans-serif">
-      PM YOUVA PORTAL
+      PM YOUNA PORTAL
     </text>
   </svg>
 )
@@ -98,10 +101,16 @@ export default function Creative() {
   const [activeTab, setActiveTab] = useState("dashboard") // Added activeTab state
   const [page, setPage] = useState(1)
   const [hasMore, setHasMore] = useState(true)
-  const [profileDropdownOpen, setProfileDropdownOpen] = useState(false)
-  const [theme, setTheme] = useState("light")
-  const [loading, setLoading] = useState(false); // State for loading spinner
-
+  const [isProfileEditOpen, setIsProfileEditOpen] = useState(false)
+  
+  // Theme hook
+  const { theme, setTheme } = useTheme()
+  
+  // User data state
+  const [user, setUser] = useState<any>(null)
+  const [userLoading, setUserLoading] = useState(true)
+  const [userError, setUserError] = useState<string | null>(null)
+  
   type Internship = {
     title: string
     department: string
@@ -117,6 +126,90 @@ export default function Creative() {
 
   const [internships, setInternships] = useState<Internship[]>([])
 
+  // Fetch user data
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        setUserLoading(true)
+        const response = await fetch("http://localhost:8000/api/users/me/", {
+          credentials: "include",
+        })
+        
+        if (response.ok) {
+          const userData = await response.json()
+          setUser(userData)
+          setUserError(null)
+        } else if (response.status === 401) {
+          // User not authenticated, redirect to login
+          window.location.href = "/login"
+        } else {
+          setUserError("Failed to fetch user data")
+        }
+      } catch (error) {
+        console.error("Error fetching user data:", error)
+        setUserError("Network error")
+      } finally {
+        setUserLoading(false)
+      }
+    }
+
+    fetchUserData()
+  }, [])
+
+  // Helper function to get user's initials
+  const getUserInitials = () => {
+    if (!user) return "U"
+    
+    if (user.first_name && user.last_name) {
+      return `${user.first_name[0]}${user.last_name[0]}`
+    } else if (user.username) {
+      return user.username.slice(0, 2).toUpperCase()
+    }
+    return "U"
+  }
+
+  // Helper function to get user's full name
+  const getUserFullName = () => {
+    if (!user) return "User"
+    
+    if (user.first_name && user.last_name) {
+      return `${user.first_name} ${user.last_name}`
+    } else if (user.first_name) {
+      return user.first_name
+    } else if (user.username) {
+      return user.username
+    }
+    return "User"
+  }
+
+  // Helper function to get user's display title
+  const getUserTitle = () => {
+    if (!user) return "Student"
+    
+    if (user.degree && user.branch) {
+      return `${user.degree} ${user.branch} Student`
+    } else if (user.degree) {
+      return `${user.degree} Student`
+    }
+    return "Student"
+  }
+
+  // Helper function to get user's location
+  const getUserLocation = () => {
+    if (!user) return ""
+    
+    if (user.college_name && user.city) {
+      return `${user.college_name} • ${user.city}`
+    } else if (user.college_name) {
+      return user.college_name
+    } else if (user.city && user.state) {
+      return `${user.city}, ${user.state}`
+    } else if (user.city) {
+      return user.city
+    }
+    return ""
+  }
+
   const toggleExpanded = (title: string) => {
     setExpandedItems((prev) => ({
       ...prev,
@@ -124,43 +217,21 @@ export default function Creative() {
     }))
   }
 
-  const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
-
-    // Add animation for theme change
-    const rootElement = document.documentElement;
-    rootElement.classList.add("theme-transition");
-
-    setTimeout(() => {
-      setTheme(newTheme);
-
-      if (newTheme === "dark") {
-        rootElement.classList.add("dark");
-      } else {
-        rootElement.classList.remove("dark");
-      }
-
-      // Remove the transition class after the animation
-      rootElement.classList.remove("theme-transition");
-    }, 300); // Match the duration of the CSS transition
-  }
-
   // Fetch internships from the backend API
   async function fetchInternships(page = 1) {
     try {
-      setLoading(true); // Start loading
       console.log(`Fetching internships: page=${page}`)
       const response = await fetch(`http://localhost:8000/api/internships?page=${page}&page_size=10`)
       console.log(`Response status: ${response.status}`)
       if (response.ok) {
         const data = await response.json()
-        console.log("Fetched data:", data) // Log the API response
+        console.log("Fetched data:", data)
 
         // Append new internships to the existing list
         setInternships((prev) => [...prev, ...data.internships])
 
         // Update hasMore based on API response
-        const morePagesAvailable = data.page * data.page_size < data.total // Ensure batch size of 10
+        const morePagesAvailable = data.page * 10 < data.total // Ensure batch size of 10
         setHasMore(morePagesAvailable)
         console.log("Updated hasMore:", morePagesAvailable)
       } else {
@@ -168,8 +239,6 @@ export default function Creative() {
       }
     } catch (error) {
       console.error("Error fetching internships:", error)
-    } finally {
-      setLoading(false); // Stop loading
     }
   }
 
@@ -177,6 +246,7 @@ export default function Creative() {
     fetchInternships()
   }, [])
 
+  // Add more detailed logs to debug infinite scroll
   const handleScroll = () => {
     console.log("Scroll event triggered")
     console.log("Window height + scrollTop:", window.innerHeight + document.documentElement.scrollTop)
@@ -499,10 +569,22 @@ export default function Creative() {
           </Button>
           <div className="flex flex-1 items-center justify-between">
             <div>
-              <h1 className="text-xl font-semibold">Welcome back, Arjun!</h1>
-              <p className="text-sm text-muted-foreground">Track your internship journey</p>
+              <h1 className="text-xl font-semibold">
+                {userLoading 
+                  ? "Loading..." 
+                  : userError 
+                    ? "Welcome back!" 
+                    : `Welcome back, ${getUserFullName()}!`
+                }
+              </h1>
+              <p className="text-sm text-muted-foreground">
+                {userError 
+                  ? `Error: ${userError}` 
+                  : "Track your internship journey"
+                }
+              </p>
             </div>
-            <div className="relative flex items-center gap-3">
+            <div className="flex items-center gap-3">
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger asChild>
@@ -511,6 +593,24 @@ export default function Creative() {
                     </Button>
                   </TooltipTrigger>
                   <TooltipContent>AI Assistant</TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button 
+                      variant="ghost" 
+                      size="icon" 
+                      className="rounded-xl"
+                      onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+                    >
+                      <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                      <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                      <span className="sr-only">Toggle theme</span>
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>Toggle theme</TooltipContent>
                 </Tooltip>
               </TooltipProvider>
 
@@ -530,101 +630,55 @@ export default function Creative() {
                 </Tooltip>
               </TooltipProvider>
 
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      className="rounded-xl"
-                      onClick={toggleTheme}
-                    >
-                      {theme === "light" ? (
-                        <Sun className="h-5 w-5" />
-                      ) : (
-                        <Moon className="h-5 w-5" />
-                      )}
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>Change Theme</TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-
-              <div className="relative">
-                <Avatar
-                  className="h-9 w-9 border-2 border-primary cursor-pointer"
-                  onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
-                >
-                  <AvatarImage src="/placeholder.svg?height=40&width=40" alt="User" />
-                  <AvatarFallback>AP</AvatarFallback>
-                </Avatar>
-                {profileDropdownOpen && (
-                  <div className="absolute right-0 mt-2 w-64 rounded-lg bg-card shadow-lg z-50">
-                    <div className="p-4 border-b">
-                      <div className="flex items-center gap-3">
-                        <Avatar className="h-12 w-12 border-2 border-primary">
-                          <AvatarImage src="/placeholder.svg?height=40&width=40" alt="User" />
-                          <AvatarFallback>AP</AvatarFallback>
-                        </Avatar>
-                        <div>
-                          <h3 className="text-base font-semibold">Arjun Patel</h3>
-                          <p className="text-sm text-muted-foreground">Computer Science Student</p>
-                          <p className="text-xs text-muted-foreground">IIT Delhi • Final Year</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="p-4 border-b space-y-3">
-                      <div className="flex items-center gap-3 text-sm">
-                        <Mail className="h-4 w-4 text-muted-foreground" />
-                        <span className="flex-1">arjun.patel@email.com</span>
-                        <Badge
-                          variant="outline"
-                          className="rounded text-xs bg-success/10 text-success border-success/20"
-                        >
-                          Verified
-                        </Badge>
-                      </div>
-                      <div className="flex items-center gap-3 text-sm">
-                        <Phone className="h-4 w-4 text-muted-foreground" />
-                        <span className="flex-1">+91 98765 43210</span>
-                        <Badge
-                          variant="outline"
-                          className="rounded text-xs bg-success/10 text-success border-success/20"
-                        >
-                          Verified
-                        </Badge>
-                      </div>
-                      <div className="flex items-center gap-3 text-sm">
-                        <MapPin className="h-4 w-4 text-muted-foreground" />
-                        <span>New Delhi, India</span>
-                      </div>
-                    </div>
-                    <div className="p-4 space-y-2">
-                      <Button
-                        variant="ghost"
-                        className="w-full justify-start rounded-lg text-sm"
-                        onClick={() => console.log("Edit Profile")}
-                      >
-                        <Settings className="mr-2 h-4 w-4" /> Edit Profile
-                      </Button>
-                      <Button
-                        variant="ghost"
-                        className="w-full justify-start rounded-lg text-sm"
-                        onClick={() => console.log("Download Resume")}
-                      >
-                        <Download className="mr-2 h-4 w-4" /> Download Resume
-                      </Button>
-                      <Button
-                        variant="ghost"
-                        className="w-full justify-start rounded-lg text-sm"
-                        onClick={() => console.log("Sign Out")}
-                      >
-                        <LogOut className="mr-2 h-4 w-4" /> Sign Out
-                      </Button>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" className="relative h-9 w-9 rounded-full">
+                    <Avatar className="h-9 w-9 border-2 border-primary">
+                      <AvatarImage 
+                        src={user?.profile_picture ? `http://localhost:8000${user.profile_picture}` : "/placeholder.svg?height=40&width=40"} 
+                        alt={getUserFullName()} 
+                      />
+                      <AvatarFallback>{getUserInitials()}</AvatarFallback>
+                    </Avatar>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-56" align="end" forceMount>
+                  <div className="flex items-center justify-start gap-2 p-2">
+                    <div className="flex flex-col space-y-1 leading-none">
+                      <p className="font-medium">
+                        {userLoading 
+                          ? "Loading..." 
+                          : userError 
+                            ? "User" 
+                            : getUserFullName()
+                        }
+                      </p>
+                      <p className="w-[200px] truncate text-sm text-muted-foreground">
+                        {userLoading 
+                          ? "Loading..." 
+                          : userError 
+                            ? "Error loading email" 
+                            : user?.email || "No email"
+                        }
+                      </p>
                     </div>
                   </div>
-                )}
-              </div>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={() => setIsProfileEditOpen(true)}>
+                    <Settings className="mr-2 h-4 w-4" />
+                    <span>Edit Profile</span>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Download className="mr-2 h-4 w-4" />
+                    <span>Download Resume</span>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem>
+                    <LogOut className="mr-2 h-4 w-4" />
+                    <span>Log out</span>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
           </div>
         </header>
@@ -1447,13 +1501,37 @@ export default function Creative() {
                     <CardContent className="p-6">
                       <div className="flex flex-col items-center text-center space-y-4">
                         <Avatar className="h-20 w-20 border-4 border-primary">
-                          <AvatarImage src="/placeholder.svg?height=80&width=80" alt="Profile" />
-                          <AvatarFallback className="text-lg">AP</AvatarFallback>
+                          <AvatarImage 
+                            src={user?.profile_picture ? `http://localhost:8000${user.profile_picture}` : "/placeholder.svg?height=80&width=80"} 
+                            alt="Profile" 
+                          />
+                          <AvatarFallback className="text-lg">{getUserInitials()}</AvatarFallback>
                         </Avatar>
                         <div>
-                          <h3 className="text-lg font-semibold">Arjun Patel</h3>
-                          <p className="text-sm text-muted-foreground">Computer Science Student</p>
-                          <p className="text-xs text-muted-foreground">IIT Delhi • Final Year</p>
+                          <h3 className="text-lg font-semibold">
+                            {userLoading 
+                              ? "Loading..." 
+                              : userError 
+                                ? "User" 
+                                : getUserFullName()
+                            }
+                          </h3>
+                          <p className="text-sm text-muted-foreground">
+                            {userLoading 
+                              ? "Loading..." 
+                              : userError 
+                                ? "Student" 
+                                : getUserTitle()
+                            }
+                          </p>
+                          <p className="text-xs text-muted-foreground">
+                            {userLoading 
+                              ? "Loading..." 
+                              : userError 
+                                ? "Location not available" 
+                                : getUserLocation()
+                            }
+                          </p>
                         </div>
                         <div className="flex items-center gap-2 text-sm">
                           <Trophy className="h-4 w-4 text-primary" />
@@ -1471,7 +1549,14 @@ export default function Creative() {
                     <CardContent className="space-y-3">
                       <div className="flex items-center gap-3 text-sm">
                         <Mail className="h-4 w-4 text-muted-foreground" />
-                        <span className="flex-1">arjun.patel@email.com</span>
+                        <span className="flex-1">
+                          {userLoading 
+                            ? "Loading..." 
+                            : userError 
+                              ? "Error loading email" 
+                              : user?.email || "No email"
+                          }
+                        </span>
                         <Badge
                           variant="outline"
                           className="rounded text-xs bg-success/10 text-success border-success/20"
@@ -1481,7 +1566,14 @@ export default function Creative() {
                       </div>
                       <div className="flex items-center gap-3 text-sm">
                         <Phone className="h-4 w-4 text-muted-foreground" />
-                        <span className="flex-1">+91 98765 43210</span>
+                        <span className="flex-1">
+                          {userLoading 
+                            ? "Loading..." 
+                            : userError 
+                              ? "Error loading phone" 
+                              : user?.phone_number || "No phone number"
+                          }
+                        </span>
                         <Badge
                           variant="outline"
                           className="rounded text-xs bg-success/10 text-success border-success/20"
@@ -1491,7 +1583,16 @@ export default function Creative() {
                       </div>
                       <div className="flex items-center gap-3 text-sm">
                         <MapPin className="h-4 w-4 text-muted-foreground" />
-                        <span>New Delhi, India</span>
+                        <span>
+                          {userLoading 
+                            ? "Loading..." 
+                            : userError 
+                              ? "Location not available"
+                              : (user?.city && user?.state) 
+                                ? `${user.city}, ${user.state}`
+                                : user?.city || "Location not set"
+                          }
+                        </span>
                       </div>
                     </CardContent>
                   </Card>
@@ -1599,14 +1700,41 @@ export default function Creative() {
                       </div>
                     </CardContent>
                   </Card>
+
+                  {/* Quick Actions */}
+                  <div className="space-y-2">
+                    <Button 
+                      className="w-full rounded-xl justify-start bg-transparent" 
+                      variant="outline"
+                      onClick={() => setIsProfileEditOpen(true)}
+                    >
+                      <Settings className="mr-2 h-4 w-4" />
+                      Edit Profile
+                    </Button>
+                    <Button className="w-full rounded-xl justify-start bg-transparent" variant="outline">
+                      <Download className="mr-2 h-4 w-4" />
+                      Download Resume
+                    </Button>
+                    <Button className="w-full rounded-xl justify-start bg-transparent" variant="outline">
+                      <LogOut className="mr-2 h-4 w-4" />
+                      Sign Out
+                    </Button>
+                  </div>
                 </div>
               </aside>
             </div>
           </main>
         </div>
+
+        {/* Profile Edit Modal */}
+        <ProfileEditModal 
+          isOpen={isProfileEditOpen} 
+          onClose={() => setIsProfileEditOpen(false)} 
+        />
       </div>
     </div>
   )
 }
 
 export { Creative as Saarthi }
+export { Creative as DesignaliCreative }
