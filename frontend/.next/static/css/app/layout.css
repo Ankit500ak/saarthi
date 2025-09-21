@@ -657,6 +657,9 @@ font-weight: 100 900;
   .mr-4 {
     margin-right: calc(var(--spacing) * 4);
   }
+  .mb-1 {
+    margin-bottom: calc(var(--spacing) * 1);
+  }
   .mb-2 {
     margin-bottom: calc(var(--spacing) * 2);
   }

@@ -42,6 +42,8 @@ import {
   Phone,
   Settings,
   LogOut,
+  Sun,
+  Moon,
 } from "lucide-react"
 
 const SarthiLogo = ({ className }: { className?: string }) => (
@@ -78,12 +80,12 @@ const SarthiLogo = ({ className }: { className?: string }) => (
       fill="url(#textGradient)"
       fontFamily="system-ui, -apple-system, sans-serif"
     >
-      SARTHI
+      SAARTHI
     </text>
 
     {/* PM Youna subtitle */}
     <text x="45" y="28" fontSize="8" fontWeight="500" fill="#6B7280" fontFamily="system-ui, -apple-system, sans-serif">
-      PM YOUNA PORTAL
+      PM YOUVA PORTAL
     </text>
   </svg>
 )
@@ -96,6 +98,9 @@ export default function Creative() {
   const [activeTab, setActiveTab] = useState("dashboard") // Added activeTab state
   const [page, setPage] = useState(1)
   const [hasMore, setHasMore] = useState(true)
+  const [profileDropdownOpen, setProfileDropdownOpen] = useState(false)
+  const [theme, setTheme] = useState("light")
+
   type Internship = {
     title: string
     department: string
@@ -116,6 +121,27 @@ export default function Creative() {
       ...prev,
       [title]: !prev[title],
     }))
+  }
+
+  const toggleTheme = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
+
+    // Add animation for theme change
+    const rootElement = document.documentElement;
+    rootElement.classList.add("theme-transition");
+
+    setTimeout(() => {
+      setTheme(newTheme);
+
+      if (newTheme === "dark") {
+        rootElement.classList.add("dark");
+      } else {
+        rootElement.classList.remove("dark");
+      }
+
+      // Remove the transition class after the animation
+      rootElement.classList.remove("theme-transition");
+    }, 300); // Match the duration of the CSS transition
   }
 
   // Fetch internships from the backend API
@@ -473,7 +499,7 @@ export default function Creative() {
               <h1 className="text-xl font-semibold">Welcome back, Arjun!</h1>
               <p className="text-sm text-muted-foreground">Track your internship journey</p>
             </div>
-            <div className="flex items-center gap-3">
+            <div className="relative flex items-center gap-3">
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger asChild>
@@ -501,10 +527,101 @@ export default function Creative() {
                 </Tooltip>
               </TooltipProvider>
 
-              <Avatar className="h-9 w-9 border-2 border-primary">
-                <AvatarImage src="/placeholder.svg?height=40&width=40" alt="User" />
-                <AvatarFallback>AP</AvatarFallback>
-              </Avatar>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="rounded-xl"
+                      onClick={toggleTheme}
+                    >
+                      {theme === "light" ? (
+                        <Sun className="h-5 w-5" />
+                      ) : (
+                        <Moon className="h-5 w-5" />
+                      )}
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>Change Theme</TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+
+              <div className="relative">
+                <Avatar
+                  className="h-9 w-9 border-2 border-primary cursor-pointer"
+                  onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
+                >
+                  <AvatarImage src="/placeholder.svg?height=40&width=40" alt="User" />
+                  <AvatarFallback>AP</AvatarFallback>
+                </Avatar>
+                {profileDropdownOpen && (
+                  <div className="absolute right-0 mt-2 w-64 rounded-lg bg-card shadow-lg z-50">
+                    <div className="p-4 border-b">
+                      <div className="flex items-center gap-3">
+                        <Avatar className="h-12 w-12 border-2 border-primary">
+                          <AvatarImage src="/placeholder.svg?height=40&width=40" alt="User" />
+                          <AvatarFallback>AP</AvatarFallback>
+                        </Avatar>
+                        <div>
+                          <h3 className="text-base font-semibold">Arjun Patel</h3>
+                          <p className="text-sm text-muted-foreground">Computer Science Student</p>
+                          <p className="text-xs text-muted-foreground">IIT Delhi • Final Year</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="p-4 border-b space-y-3">
+                      <div className="flex items-center gap-3 text-sm">
+                        <Mail className="h-4 w-4 text-muted-foreground" />
+                        <span className="flex-1">arjun.patel@email.com</span>
+                        <Badge
+                          variant="outline"
+                          className="rounded text-xs bg-success/10 text-success border-success/20"
+                        >
+                          Verified
+                        </Badge>
+                      </div>
+                      <div className="flex items-center gap-3 text-sm">
+                        <Phone className="h-4 w-4 text-muted-foreground" />
+                        <span className="flex-1">+91 98765 43210</span>
+                        <Badge
+                          variant="outline"
+                          className="rounded text-xs bg-success/10 text-success border-success/20"
+                        >
+                          Verified
+                        </Badge>
+                      </div>
+                      <div className="flex items-center gap-3 text-sm">
+                        <MapPin className="h-4 w-4 text-muted-foreground" />
+                        <span>New Delhi, India</span>
+                      </div>
+                    </div>
+                    <div className="p-4 space-y-2">
+                      <Button
+                        variant="ghost"
+                        className="w-full justify-start rounded-lg text-sm"
+                        onClick={() => console.log("Edit Profile")}
+                      >
+                        <Settings className="mr-2 h-4 w-4" /> Edit Profile
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        className="w-full justify-start rounded-lg text-sm"
+                        onClick={() => console.log("Download Resume")}
+                      >
+                        <Download className="mr-2 h-4 w-4" /> Download Resume
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        className="w-full justify-start rounded-lg text-sm"
+                        onClick={() => console.log("Sign Out")}
+                      >
+                        <LogOut className="mr-2 h-4 w-4" /> Sign Out
+                      </Button>
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </header>
@@ -1479,22 +1596,6 @@ export default function Creative() {
                       </div>
                     </CardContent>
                   </Card>
-
-                  {/* Quick Actions */}
-                  <div className="space-y-2">
-                    <Button className="w-full rounded-xl justify-start bg-transparent" variant="outline">
-                      <Settings className="mr-2 h-4 w-4" />
-                      Edit Profile
-                    </Button>
-                    <Button className="w-full rounded-xl justify-start bg-transparent" variant="outline">
-                      <Download className="mr-2 h-4 w-4" />
-                      Download Resume
-                    </Button>
-                    <Button className="w-full rounded-xl justify-start bg-transparent" variant="outline">
-                      <LogOut className="mr-2 h-4 w-4" />
-                      Sign Out
-                    </Button>
-                  </div>
                 </div>
               </aside>
             </div>
@@ -1505,4 +1606,4 @@ export default function Creative() {
   )
 }
 
-export { Creative as DesignaliCreative }
+export { Creative as Saarthi }

@@ -169,7 +169,7 @@ export default function Home() {
             className="rounded-md font-bold relative cursor-pointer hover:-translate-y-0.5 transition duration-200 inline-block text-center bg-gradient-to-b from-primary to-primary/80 text-white shadow-[0px_2px_0px_0px_rgba(255,255,255,0.3)_inset] px-4 py-2 text-sm"
             prefetch={false}
           >
-            Join Sarthi
+            Join Saarthi
           </Link>
         </div>
       </header>
@@ -237,7 +237,7 @@ export default function Home() {
                   href="/signup"
                   className="px-4 py-3 text-lg font-bold text-center bg-gradient-to-b from-primary to-primary/80 text-white rounded-lg shadow-lg hover:-translate-y-0.5 transition-all duration-200"
                 >
-                  Join Sarthi
+                  Join Saarthi
                 </Link>
               </div>
             </nav>

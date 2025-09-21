@@ -1,14 +1,14 @@
 "use client"
-import { DesignaliCreative } from "./components/creative"
+import { Saarthi } from "./components/creative"
  
 export default function Home() {
    
   return (
      
       <main className="overflow-hidden">  
-        
-          <DesignaliCreative />
-  
+
+          <Saarthi />
+
       </main>
      
   )
