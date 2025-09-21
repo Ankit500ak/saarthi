@@ -48,6 +48,7 @@ import {
   Sun,
   Moon,
 } from "lucide-react"
+import Link from "next/link"
 
 const SarthiLogo = ({ className }: { className?: string }) => (
   <svg viewBox="0 0 120 40" className={cn("h-10 w-auto", className)} fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -710,10 +711,12 @@ export default function Creative() {
                         <Download className="mr-2 h-4 w-4" />
                         Export Profile
                       </Button>
-                      <Button className="rounded-xl">
-                        <Plus className="mr-2 h-4 w-4" />
-                        Apply Now
-                      </Button>
+                      <Link href="/recommendations">
+                        <Button className="rounded-xl">
+                          <Plus className="mr-2 h-4 w-4" />
+                          Apply Now
+                        </Button>
+                      </Link>
                     </div>
                   </div>
 
@@ -930,7 +933,9 @@ export default function Creative() {
                                       </div>
                                     </CardContent>
                                     <CardFooter className="flex gap-2">
-                                      <Button className="flex-1 rounded-xl">Apply Now</Button>
+                                      <Link href="/recommendations" className="flex-1">
+                                        <Button className="w-full rounded-xl">Apply Now</Button>
+                                      </Link>
                                       <Button variant="outline" size="icon" className="rounded-xl bg-transparent">
                                         <Bookmark className="h-4 w-4" />
                                       </Button>
@@ -1163,7 +1168,9 @@ export default function Creative() {
                                   </div>
                                 </CardContent>
                                 <CardFooter className="flex gap-2">
-                                  <Button className="flex-1 rounded-xl">Apply Now</Button>
+                                  <Link href="/recommendations" className="flex-1">
+                                    <Button className="w-full rounded-xl">Apply Now</Button>
+                                  </Link>
                                   <Button variant="outline" size="icon" className="rounded-xl bg-transparent">
                                     <Bookmark className="h-4 w-4" />
                                   </Button>
