@@ -697,11 +697,18 @@ We love contributions! Here's how you can help make Saarthi even better:
    ```
 5. **🚀 Open** a Pull Request
 
+
 ### 👥 Contributors
 
 <div align="center">
 
 Thanks to all the amazing people who have contributed to Saarthi!
+
+<p align="center">
+    <a href="https://github.com/Naman-56-56"><img src="https://avatars.githubusercontent.com/u/104669389?v=4" width="60" alt="Naman-56-56"/></a>
+    <a href="https://github.com/Ankit500ak"><img src="https://avatars.githubusercontent.com/u/105011956?v=4" width="60" alt="Ankit500ak"/></a>
+    <a href="https://github.com/Dynamic-Fantasy"><img src="https://avatars.githubusercontent.com/u/122234982?v=4" width="60" alt="Dynamic-Fantasy"/></a>
+</p>
 
 [![Contributors](https://contrib.rocks/image?repo=Naman-56-56/saarthi)](https://github.com/Naman-56-56/saarthi/graphs/contributors)
 
