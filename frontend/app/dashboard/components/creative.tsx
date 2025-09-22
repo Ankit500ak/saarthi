@@ -105,7 +105,7 @@ export default function Creative() {
   const [isProfileEditOpen, setIsProfileEditOpen] = useState(false)
   
   // Theme hook
-  const { theme, setTheme } = useTheme()
+  const { resolvedTheme, setTheme } = useTheme()
   
   // User data state
   const [user, setUser] = useState<any>(null)
@@ -629,7 +629,7 @@ export default function Creative() {
                       variant="ghost" 
                       size="icon" 
                       className="rounded-xl"
-                      onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+                      onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
                     >
                       <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
                       <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />

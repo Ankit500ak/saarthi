@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Saarthi Banner](https://via.placeholder.com/800x200/4F46E5/FFFFFF?text=Saarthi+%E2%80%A2+Bridging+Dreams+to+Opportunities)
+![Saarthi Banner](docs/banner.png)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Django](https://img.shields.io/badge/Django-092E20?style=flat&logo=django&logoColor=green)](https://www.djangoproject.com/)
