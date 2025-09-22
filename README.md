@@ -704,11 +704,32 @@ We love contributions! Here's how you can help make Saarthi even better:
 
 Thanks to all the amazing people who have contributed to Saarthi!
 
-<p align="center">
-    <a href="https://github.com/Naman-56-56"><img src="https://avatars.githubusercontent.com/u/104669389?v=4" width="60" alt="Naman-56-56"/></a>
-    <a href="https://github.com/Ankit500ak"><img src="https://avatars.githubusercontent.com/u/105011956?v=4" width="60" alt="Ankit500ak"/></a>
-    <a href="https://github.com/Dynamic-Fantasy"><img src="https://avatars.githubusercontent.com/u/122234982?v=4" width="60" alt="Dynamic-Fantasy"/></a>
-</p>
+
+<table align="center">
+    <tr>
+        <td align="center">
+            <a href="https://github.com/Naman-56-56">
+                <img src="https://avatars.githubusercontent.com/u/104669389?v=4" width="70" alt="Naman-56-56"/><br/>
+                <b>Naman Sharma</b><br/>
+                <sub>Leader</sub>
+            </a>
+        </td>
+        <td align="center">
+            <a href="https://github.com/Ankit500ak">
+                <img src="https://avatars.githubusercontent.com/u/105011956?v=4" width="70" alt="Ankit500ak"/><br/>
+                <b>Ankit Pal</b><br/>
+                <sub>Developer</sub>
+            </a>
+        </td>
+        <td align="center">
+            <a href="https://github.com/Dynamic-Fantasy">
+                <img src="https://avatars.githubusercontent.com/u/122234982?v=4" width="70" alt="Dynamic-Fantasy"/><br/>
+                <b>Dynamic Fantasy</b><br/>
+                <sub>Contributor</sub>
+            </a>
+        </td>
+    </tr>
+</table>
 
 [![Contributors](https://contrib.rocks/image?repo=Naman-56-56/saarthi)](https://github.com/Naman-56-56/saarthi/graphs/contributors)
 
@@ -725,9 +746,12 @@ Thanks to all the amazing people who have contributed to Saarthi!
 ![GitHub issues](https://img.shields.io/github/issues/Naman-56-56/saarthi)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/Naman-56-56/saarthi)
 
+
 [![GitHub Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=Naman-56-56&theme=github-compact)](https://github.com/Naman-56-56/saarthi)
 
 [![GitHub Activity Graph (Ankit500ak)](https://github-readme-activity-graph.vercel.app/graph?username=Ankit500ak&theme=github-compact)](https://github.com/Ankit500ak)
+
+[![GitHub Activity Graph (Dynamic-Fantasy)](https://github-readme-activity-graph.vercel.app/graph?username=Dynamic-Fantasy&theme=github-compact)](https://github.com/Dynamic-Fantasy)
 
 </div>
 
