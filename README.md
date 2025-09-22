@@ -720,6 +720,8 @@ Thanks to all the amazing people who have contributed to Saarthi!
 
 [![GitHub Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=Naman-56-56&theme=github-compact)](https://github.com/Naman-56-56/saarthi)
 
+[![GitHub Activity Graph (Ankit500ak)](https://github-readme-activity-graph.vercel.app/graph?username=Ankit500ak&theme=github-compact)](https://github.com/Ankit500ak)
+
 </div>
 
 ---
