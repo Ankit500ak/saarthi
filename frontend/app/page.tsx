@@ -13,6 +13,7 @@ import Link from "next/link"
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [user, setUser] = useState(null) // Replace with actual user state management
 
   useEffect(() => {
     const root = window.document.documentElement
@@ -44,6 +45,11 @@ export default function Home() {
         })
       }
     }, 100)
+  }
+
+  const handleLogout = () => {
+    // Implement logout logic
+    setUser(null)
   }
 
   return (
@@ -156,21 +162,40 @@ export default function Home() {
         </div>
 
         <div className="flex items-center gap-4">
-          <Link
-            href="/login"
-            className="rounded-md font-bold relative cursor-pointer inline-block text-center border border-primary text-primary px-4 py-2 text-sm bg-background hover:bg-primary hover:text-white transition-colors duration-200 shadow-sm"
-            prefetch={false}
-          >
-            Log In
-          </Link>
-
-          <Link
-            href="/signup"
-            className="rounded-md font-bold relative cursor-pointer hover:-translate-y-0.5 transition duration-200 inline-block text-center bg-gradient-to-b from-primary to-primary/80 text-white shadow-[0px_2px_0px_0px_rgba(255,255,255,0.3)_inset] px-4 py-2 text-sm"
-            prefetch={false}
-          >
-            Join Saarthi
-          </Link>
+          {user ? (
+            <>
+              <Link
+                href="/dashboard"
+                className="rounded-md font-bold relative cursor-pointer inline-block text-center border border-primary text-primary px-4 py-2 text-sm bg-background hover:bg-primary hover:text-white transition-colors duration-200 shadow-sm"
+                prefetch={false}
+              >
+                Dashboard
+              </Link>
+              <button
+                onClick={handleLogout}
+                className="rounded-md font-bold relative cursor-pointer inline-block text-center border border-primary text-primary px-4 py-2 text-sm bg-background hover:bg-primary hover:text-white transition-colors duration-200 shadow-sm"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link
+                href="/login"
+                className="rounded-md font-bold relative cursor-pointer inline-block text-center border border-primary text-primary px-4 py-2 text-sm bg-background hover:bg-primary hover:text-white transition-colors duration-200 shadow-sm"
+                prefetch={false}
+              >
+                Log In
+              </Link>
+              <Link
+                href="/signup"
+                className="rounded-md font-bold relative cursor-pointer hover:-translate-y-0.5 transition duration-200 inline-block text-center bg-gradient-to-b from-primary to-primary/80 text-white shadow-[0px_2px_0px_0px_rgba(255,255,255,0.3)_inset] px-4 py-2 text-sm"
+                prefetch={false}
+              >
+                Join Saarthi
+              </Link>
+            </>
+          )}
         </div>
       </header>
 

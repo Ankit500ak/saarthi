@@ -84,7 +84,7 @@ const SarthiLogo = ({ className }: { className?: string }) => (
       fill="url(#textGradient)"
       fontFamily="system-ui, -apple-system, sans-serif"
     >
-      SARTHI
+      SAARTHI
     </text>
 
     {/* PM Youna subtitle */}
@@ -469,6 +469,31 @@ export default function Creative() {
     return () => clearTimeout(timer)
   }, [])
 
+  const handleLogout = async () => {
+    try {
+      const response = await fetch("http://localhost:8000/api/users/logout/", {
+        method: "POST",
+        credentials: "include",
+      });
+
+      if (response.ok) {
+        // Redirect to login page after successful logout
+        window.location.href = "/login";
+      } else {
+        console.error("Failed to log out", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error during logout:", error);
+    }
+  };
+
+  // Helper function to get user's phone number
+  const getUserPhoneNumber = () => {
+    if (!user) return "No phone number";
+
+    return user.phone_number || "No phone number";
+  };
+
   return (
     <div className="flex h-screen bg-background">
       {/* Sidebar */}
@@ -674,7 +699,7 @@ export default function Creative() {
                     <span>Download Resume</span>
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem>
+                  <DropdownMenuItem onClick={handleLogout}>
                     <LogOut className="mr-2 h-4 w-4" />
                     <span>Log out</span>
                   </DropdownMenuItem>
@@ -1578,7 +1603,7 @@ export default function Creative() {
                             ? "Loading..." 
                             : userError 
                               ? "Error loading phone" 
-                              : user?.phone_number || "No phone number"
+                              : getUserPhoneNumber()
                           }
                         </span>
                         <Badge

@@ -1,11 +1,12 @@
+
 # Python
 __pycache__/
 *.py[cod]
 *.pyo
 *.pyd
 *.pyc
-*.env
 .env
+.env.*
 env/
 venv/
 ENV/
@@ -16,10 +17,22 @@ ENV/
 staticfiles/
 media/
 
-# Node
+# Node/React/Next.js
 node_modules/
 build/
 dist/
+.next/
+frontend/node_modules/
+frontend/build/
+frontend/.next/
+
+# Lock files
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+frontend/package-lock.json
+frontend/pnpm-lock.yaml
+frontend/yarn.lock
 
 # VS Code
 .vscode/
@@ -32,8 +45,14 @@ Thumbs.db
 *.bak
 *.swp
 *.swo
+coverage/
+*.coverage
+*.log
 
-# React
-frontend/node_modules/
-frontend/build/
-.next/
+# Env files
+.env
+.env.local
+.env.*.local
+frontend/.env
+frontend/.env.local
+frontend/.env.*.local

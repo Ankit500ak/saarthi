@@ -1,11 +1,21 @@
-# Email backend for production/external service
+
+
+# Email backend for production/external service (now loaded from environment variables)
+import os
+
+from pathlib import Path
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+from dotenv import load_dotenv
+load_dotenv(os.path.join(BASE_DIR.parent, '.env'))
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'codeweave12@gmail.com'
-EMAIL_HOST_PASSWORD = 'wandzyckhziaqvzp'
-EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'codeweave12@gmail.com'
+EMAIL_HOST = os.environ.get('EMAIL_HOST')
+EMAIL_PORT = int(os.environ.get('EMAIL_PORT', 587))
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS', 'True') == 'True'
+DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL')
 """
 Django settings for saarthi project.
 

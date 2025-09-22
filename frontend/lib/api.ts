@@ -20,3 +20,7 @@ export async function apiPost<T>(url: string, body?: unknown): Promise<T> {
   }
   return res.json()
 }
+
+export async function apiLogout(): Promise<void> {
+  await apiPost('/logout/')
+}

@@ -1,1 +1,13 @@
 .next/
+node_modules/
+build/
+dist/
+.env
+.env.local
+.env.*.local
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+coverage/
+*.log
+__pycache__/
