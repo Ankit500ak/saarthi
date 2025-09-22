@@ -1,3 +1,18 @@
+from django.contrib.auth.models import User
+from django.db import models
+import random
+from django.utils import timezone
+
+# OTP Model for email verification
+class EmailOTP(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    email = models.EmailField()
+    otp = models.CharField(max_length=6)
+    created_at = models.DateTimeField(auto_now_add=True)
+    is_verified = models.BooleanField(default=False)
+
+    def is_expired(self):
+        return (timezone.now() - self.created_at).total_seconds() > 600  # 10 min expiry
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save

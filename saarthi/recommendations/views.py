@@ -6,6 +6,7 @@ from django.views.decorators.http import require_http_methods
 import json
 from .models import Internship  # Import the Internship model
 from .ml_model import recommend_jobs
+from django.contrib.auth import logout
 
 def internships_api(request):
     if request.method == 'GET':
@@ -131,6 +132,30 @@ def recommend_api(request):
             "status": "error"
         }, status=400)
     
+    except Exception as e:
+        return JsonResponse({
+            "error": f"Internal server error: {str(e)}",
+            "status": "error"
+        }, status=500)
+
+@csrf_exempt
+@require_http_methods(["POST"])
+def logout_api(request):
+    """
+    API endpoint for logging out a user.
+
+    Returns:
+    {
+        "message": "Successfully logged out",
+        "status": "success"
+    }
+    """
+    try:
+        logout(request)
+        return JsonResponse({
+            "message": "Successfully logged out",
+            "status": "success"
+        })
     except Exception as e:
         return JsonResponse({
             "error": f"Internal server error: {str(e)}",

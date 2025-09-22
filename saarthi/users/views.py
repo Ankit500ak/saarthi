@@ -1,11 +1,108 @@
 
+import requests
+import random
+import json
+from django.core.mail import send_mail
+from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib.auth.models import User
-from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse, HttpResponseBadRequest
-from .models import UserProfile
-import json
+from .models import UserProfile, EmailOTP
+
+@csrf_exempt
+def send_otp(request):
+	if request.method == 'OPTIONS':
+		response = JsonResponse({'detail': 'CORS preflight'})
+		response["Access-Control-Allow-Methods"] = "POST, OPTIONS"
+		response["Access-Control-Allow-Headers"] = "Content-Type"
+		return _set_cors_headers(response, request)
+	if request.method == 'POST':
+		try:
+			data = json.loads(request.body)
+			email = data.get('email')
+			if not email:
+				response = JsonResponse({'error': 'Email required'}, status=400)
+				return _set_cors_headers(response, request)
+			user = User.objects.filter(email=email).first()
+			if not user:
+				response = JsonResponse({'error': 'User not found'}, status=404)
+				return _set_cors_headers(response, request)
+			otp = f"{random.randint(100000, 999999)}"
+			EmailOTP.objects.filter(user=user, email=email).delete()  # Remove old OTPs
+			EmailOTP.objects.create(user=user, email=email, otp=otp)
+			# Use Django's built-in email service
+			subject = "Saarthi Email Verification OTP"
+			message = f"Hello,\n\nYour OTP code for Saarthi verification is: {otp}\n\nIf you did not request this, please ignore this email.\n\nThanks,\nSaarthi Team"
+			html_message = f"""
+			<div style='font-family: Arial, sans-serif; background: #f9fafb; padding: 32px;'>
+				<div style='max-width: 480px; margin: 0 auto; background: #fff; border-radius: 12px; box-shadow: 0 2px 8px #0001; padding: 32px;'>
+					<h2 style='color: #2563eb; text-align: center; margin-bottom: 24px;'>Saarthi Email Verification</h2>
+					<p style='font-size: 16px; color: #222; text-align: center;'>
+						Hello,<br><br>
+						<b>Your OTP code for Saarthi verification is:</b>
+					</p>
+					<div style='font-size: 32px; font-weight: bold; color: #16a34a; text-align: center; letter-spacing: 8px; margin: 24px 0 32px 0;'>{otp}</div>
+					<p style='font-size: 15px; color: #555; text-align: center;'>
+						If you did not request this, please ignore this email.<br><br>
+						<span style='color: #2563eb;'>Thanks,<br>Saarthi Team</span>
+					</p>
+				</div>
+			</div>
+			"""
+			from django.conf import settings
+			try:
+				send_mail(
+					subject,
+					message,
+					settings.DEFAULT_FROM_EMAIL,
+					[email],
+					fail_silently=False,
+					html_message=html_message
+				)
+				print('message sent')
+			except Exception as e:
+				response = JsonResponse({'error': f'Failed to send OTP email: {str(e)}'}, status=500)
+				return _set_cors_headers(response, request)
+			response = JsonResponse({'success': True, 'message': 'OTP sent'})
+			return _set_cors_headers(response, request)
+		except Exception as e:
+			response = JsonResponse({'error': str(e)}, status=400)
+			return _set_cors_headers(response, request)
+	return HttpResponseBadRequest('Only POST allowed')
+
+@csrf_exempt
+def verify_otp(request):
+	if request.method == 'OPTIONS':
+		response = JsonResponse({'detail': 'CORS preflight'})
+		response["Access-Control-Allow-Methods"] = "POST, OPTIONS"
+		response["Access-Control-Allow-Headers"] = "Content-Type"
+		return _set_cors_headers(response, request)
+	if request.method == 'POST':
+		try:
+			data = json.loads(request.body)
+			email = data.get('email')
+			otp = data.get('otp')
+			if not email or not otp:
+				response = JsonResponse({'error': 'Email and OTP required'}, status=400)
+				return _set_cors_headers(response, request)
+			otp_obj = EmailOTP.objects.filter(email=email, otp=otp, is_verified=False).first()
+			if not otp_obj:
+				response = JsonResponse({'error': 'Invalid OTP'}, status=400)
+				return _set_cors_headers(response, request)
+			if otp_obj.is_expired():
+				otp_obj.delete()
+				response = JsonResponse({'error': 'OTP expired'}, status=400)
+				return _set_cors_headers(response, request)
+			otp_obj.is_verified = True
+			otp_obj.save()
+			response = JsonResponse({'success': True, 'message': 'OTP verified'})
+			return _set_cors_headers(response, request)
+		except Exception as e:
+			response = JsonResponse({'error': str(e)}, status=400)
+			return _set_cors_headers(response, request)
+	return HttpResponseBadRequest('Only POST allowed')
+
 
 # Create your views here.
 
@@ -223,3 +320,22 @@ def update_profile(request):
 		payload = {'error': str(e)}
 		response = JsonResponse(payload, status=400)
 		return _set_cors_headers(response, request)
+
+@csrf_exempt
+def logout_view(request):
+    if request.method == 'OPTIONS':
+        response = JsonResponse({'detail': 'CORS preflight'})
+        response["Access-Control-Allow-Methods"] = "POST, OPTIONS"
+        response["Access-Control-Allow-Headers"] = "Content-Type"
+        return _set_cors_headers(response, request)
+
+    if request.method != 'POST':
+        return HttpResponseBadRequest('Only POST allowed')
+
+    if not request.user.is_authenticated:
+        response = JsonResponse({'error': 'User is not authenticated'}, status=401)
+        return _set_cors_headers(response, request)
+
+    auth_logout(request)
+    response = JsonResponse({'success': True, 'message': 'Logged out successfully'})
+    return _set_cors_headers(response, request)
