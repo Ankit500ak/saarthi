@@ -141,9 +141,6 @@ The architecture follows a **microservices-inspired monolithic** approach with c
 ## 🛠️ Technology Stack
 
 <div align="center">
-<img src="https://github.com/Naman-56-56/saarthi/assets/your-username/system-architecture.png" alt="Saarthi System Architecture" width="100%" style="border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-
-*Complete System Architecture and Data Flow Diagram*
 </div>
 
 ### 🎯 Architectural Overview
