@@ -84,39 +84,403 @@ graph TD
 
 ---
 
-## 🏗️ Architecture & Tech Stack
+## 📈 System Architecture Visualization
 
 <div align="center">
 
-### 🎨 Frontend Architecture
-```
-┌─────────────────────────────────────────────┐
-│                 Next.js App                 │
-├─────────────────┬───────────────────────────┤
-│   React Pages   │     TypeScript Logic      │
-├─────────────────┼───────────────────────────┤
-│ Tailwind Styles │    Custom Hooks & Utils   │
-├─────────────────┴───────────────────────────┤
-│           Responsive Components             │
-└─────────────────────────────────────────────┘
-```
+### 🎯 Complete System Overview
 
-### 🔧 Backend Architecture
-```
-┌─────────────────────────────────────────────┐
-│              Django Backend                 │
-├─────────────────┬───────────────────────────┤
-│  REST API       │    Authentication         │
-├─────────────────┼───────────────────────────┤
-│  ML Engine      │    Database Models        │
-├─────────────────┼───────────────────────────┤
-│  Admin Panel    │    Email Services         │
-└─────────────────┴───────────────────────────┘
-```
+Below is our comprehensive system architecture showing all components, data flows, and integrations:
+
+<img src="https://raw.githubusercontent.com/Naman-56-56/saarthi/main/docs/system-architecture.png" alt="Saarthi Complete System Architecture" width="90%" style="border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.1); border: 1px solid #e1e5e9;">
+
+*Interactive System Architecture & Communication Flow Diagram*
 
 </div>
 
-### 🛠️ Technology Stack
+### 🔍 Architecture Breakdown
+
+The architecture follows a **microservices-inspired monolithic** approach with clear separation of concerns:
+
+#### 👥 **User Layer**
+- **Students**: Primary users seeking internships
+- **Employers**: Organizations posting opportunities  
+- **Admins**: Platform administrators
+
+#### 🎨 **Frontend Layer** 
+- **React.js**: Component-based UI framework
+- **TailwindCSS**: Utility-first styling
+- **Next.js**: Full-stack React framework
+
+#### 🔧 **Backend Layer**
+- **Django**: Web framework with ORM
+- **DRF**: REST API framework for endpoints
+
+#### 🧠 **ML Recommendation Engine**
+- **NLP**: Natural Language Processing for job matching
+- **Content-based Filtering**: Skills and preference matching
+- **Collaborative Filtering**: User behavior analysis
+
+#### 💾 **Database & Storage**
+- **PostgreSQL**: Primary relational database
+- **Redis**: Caching and session storage
+- **Cloud Storage**: File and media storage
+
+#### 🌐 **External Integrations**
+- **Internshala**: Internship data source
+- **PM Portal**: Government internship programs
+- **Kaggle**: ML training datasets
+
+#### 🚀 **Deployment & Infrastructure**
+- **Docker**: Containerized applications
+- **Kubernetes**: Container orchestration
+- **NGINX**: Web server and reverse proxy
+
+---
+
+## 🛠️ Technology Stack
+
+<div align="center">
+<img src="https://github.com/Naman-56-56/saarthi/assets/your-username/system-architecture.png" alt="Saarthi System Architecture" width="100%" style="border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+
+*Complete System Architecture and Data Flow Diagram*
+</div>
+
+### 🎯 Architectural Overview
+
+```mermaid
+graph TB
+    subgraph "User Layer"
+        U1[👨‍🎓 Students]
+        U2[🏢 Employers]
+        U3[👨‍💼 Admin]
+    end
+    
+    subgraph "Frontend Layer"
+        F1[⚛️ React.js]
+        F2[🎨 TailwindCSS]
+        F3[📱 Next.js App Router]
+    end
+    
+    subgraph "Backend Layer"
+        B1[🐍 Django REST API]
+        B2[🔐 Authentication Service]
+        B3[📧 Email Service]
+        B4[🛡️ Authorization]
+    end
+    
+    subgraph "ML Recommendation Engine"
+        ML1[🤖 NLP Processing]
+        ML2[📊 Content-based Filtering]
+        ML3[🤝 Collaborative Filtering]
+        ML4[⚡ Real-time Recommendations]
+    end
+    
+    subgraph "Data Layer"
+        D1[(🐘 PostgreSQL)]
+        D2[(⚡ Redis Cache)]
+        D3[☁️ Cloud Storage]
+    end
+    
+    subgraph "External Data Sources"
+        E1[🏛️ Internshala API]
+        E2[📋 PM Portal Data]
+        E3[📊 Kaggle Datasets]
+    end
+    
+    subgraph "Deployment & Infrastructure"
+        I1[🐳 Docker]
+        I2[☸️ Kubernetes]
+        I3[🌐 NGINX]
+    end
+    
+    U1 --> F1
+    U2 --> F1
+    U3 --> F1
+    
+    F1 --> B1
+    F2 --> F1
+    F3 --> F1
+    
+    B1 --> ML1
+    B1 --> D1
+    B2 --> B1
+    B3 --> B1
+    B4 --> B1
+    
+    ML1 --> ML2
+    ML2 --> ML3
+    ML3 --> ML4
+    
+    D1 --> D2
+    D2 --> D3
+    
+    E1 --> B1
+    E2 --> B1
+    E3 --> ML1
+    
+    I1 --> I2
+    I2 --> I3
+    
+    style U1 fill:#e3f2fd
+    style U2 fill:#f3e5f5
+    style U3 fill:#e8f5e8
+    style ML1 fill:#fff3e0
+    style ML2 fill:#fff3e0
+    style ML3 fill:#fff3e0
+    style ML4 fill:#fff3e0
+```
+
+### 🔄 Data Flow Architecture
+
+```mermaid
+sequenceDiagram
+    participant S as 👨‍🎓 Student
+    participant F as 🌐 Frontend
+    participant A as 🔐 Auth Service
+    participant API as 🚀 Django API
+    participant ML as 🤖 ML Engine
+    participant DB as 💾 Database
+    participant E as 📧 Email Service
+    
+    S->>F: Login/Register
+    F->>A: Authentication Request
+    A->>E: Send OTP
+    E-->>S: OTP Email
+    S->>F: Enter OTP
+    F->>A: Verify OTP
+    A->>DB: Store Session
+    A-->>F: JWT Token
+    
+    S->>F: Request Recommendations
+    F->>API: GET /api/recommendations/
+    API->>ML: Process User Profile
+    ML->>DB: Fetch User Data & Preferences
+    ML->>ML: Run ML Algorithms
+    ML-->>API: Personalized Results
+    API-->>F: JSON Response
+    F-->>S: Display Recommendations
+    
+    S->>F: Apply for Internship
+    F->>API: POST /api/applications/
+    API->>DB: Store Application
+    API->>E: Send Confirmation
+    E-->>S: Application Confirmation
+```
+
+### 🎨 Frontend Architecture Deep Dive
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    🌐 Next.js 14 App Router                 │
+├─────────────────────────────────────────────────────────────┤
+│  📱 Pages & Layouts  │  🧩 Components  │  🔧 Custom Hooks   │
+│  ┌─────────────────┐ │ ┌─────────────┐ │ ┌─────────────────┐ │
+│  │ • (auth)/       │ │ │ • UI Base   │ │ │ • useAuth()     │ │
+│  │ • dashboard/    │ │ │ • Forms     │ │ │ • useProfile()  │ │
+│  │ • internships/  │ │ │ • Charts    │ │ │ • useSearch()   │ │
+│  │ • profile/      │ │ │ • Modals    │ │ │ • useFilters()  │ │
+│  └─────────────────┘ │ └─────────────┘ │ └─────────────────┘ │
+├─────────────────────────────────────────────────────────────┤
+│         🎨 Styling Layer        │        📚 Utility Layer   │
+│  ┌─────────────────────────────┐ │ ┌─────────────────────────┐ │
+│  │ • TailwindCSS Classes       │ │ │ • API Clients           │ │
+│  │ • Custom CSS Variables      │ │ │ • Data Validators       │ │
+│  │ • Theme Configuration       │ │ │ • Helper Functions      │ │
+│  │ • Responsive Breakpoints    │ │ │ • Constants & Types     │ │
+│  └─────────────────────────────┘ │ └─────────────────────────┘ │
+├─────────────────────────────────────────────────────────────┤
+│                    ⚡ State Management                       │
+│  • React Context API  • Local Storage  • Session Storage    │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### 🔧 Backend Architecture Deep Dive
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                  🐍 Django REST Framework                   │
+├─────────────────────────────────────────────────────────────┤
+│    🔐 Auth Layer   │   📡 API Layer    │   🧠 Business Logic │
+│  ┌───────────────┐ │ ┌───────────────┐ │ ┌─────────────────┐ │
+│  │ • JWT Tokens  │ │ │ • ViewSets    │ │ │ • Serializers   │ │
+│  │ • OTP System  │ │ │ • Routers     │ │ │ • Validators    │ │
+│  │ • Permissions │ │ │ • Pagination  │ │ │ • Permissions   │ │
+│  │ • Middleware  │ │ │ • Filtering   │ │ │ • Custom Logic  │ │
+│  └───────────────┘ │ └───────────────┘ │ └─────────────────┘ │
+├─────────────────────────────────────────────────────────────┤
+│     🤖 ML Engine    │   📊 Data Layer   │   📧 Services      │
+│  ┌───────────────┐ │ ┌───────────────┐ │ ┌─────────────────┐ │
+│  │ • Recommender │ │ │ • Models      │ │ │ • Email Service │ │
+│  │ • NLP Pipeline│ │ │ • Migrations  │ │ │ • File Upload   │ │
+│  │ • Algorithms  │ │ │ • Querysets   │ │ │ • Notification  │ │
+│  │ • Training    │ │ │ • Relations   │ │ │ • Analytics     │ │
+│  └───────────────┘ │ └───────────────┘ │ └─────────────────┘ │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### 🧠 ML Recommendation Engine
+
+```mermaid
+graph LR
+    subgraph "Data Input"
+        D1[👤 User Profile]
+        D2[🎯 Skills]
+        D3[📚 Education]
+        D4[💼 Experience]
+    end
+    
+    subgraph "NLP Processing"
+        N1[📝 Text Preprocessing]
+        N2[🔤 Tokenization]
+        N3[📊 Vectorization]
+    end
+    
+    subgraph "ML Algorithms"
+        A1[🎯 Content Filtering]
+        A2[🤝 Collaborative Filtering]
+        A3[📊 Matrix Factorization]
+        A4[🧠 Deep Learning]
+    end
+    
+    subgraph "Output"
+        O1[⭐ Ranked Recommendations]
+        O2[📈 Confidence Scores]
+        O3[🔍 Explanation]
+    end
+    
+    D1 --> N1
+    D2 --> N1
+    D3 --> N1
+    D4 --> N1
+    
+    N1 --> N2
+    N2 --> N3
+    
+    N3 --> A1
+    N3 --> A2
+    N3 --> A3
+    N3 --> A4
+    
+    A1 --> O1
+    A2 --> O1
+    A3 --> O2
+    A4 --> O3
+    
+    style D1 fill:#e3f2fd
+    style A1 fill:#fff3e0
+    style A2 fill:#fff3e0
+    style A3 fill:#fff3e0
+    style A4 fill:#fff3e0
+    style O1 fill:#e8f5e8
+```
+
+### 📊 Technical Specifications
+
+<div align="center">
+
+| Component | Technology | Version | Purpose |
+|-----------|------------|---------|---------|
+| **Frontend Framework** | Next.js | 14.x | Server-side rendering & routing |
+| **UI Library** | React | 18.x | Component-based architecture |
+| **Styling** | Tailwind CSS | 3.x | Utility-first CSS framework |
+| **Language** | TypeScript | 5.x | Type-safe development |
+| **Backend Framework** | Django | 4.x | Web framework & API development |
+| **API Framework** | Django REST | 3.x | RESTful API endpoints |
+| **Database** | PostgreSQL | 15.x | Primary data storage |
+| **Caching** | Redis | 7.x | Session & query caching |
+| **ML Library** | scikit-learn | 1.3.x | Machine learning algorithms |
+| **Data Processing** | Pandas | 2.x | Data manipulation & analysis |
+| **Web Server** | NGINX | 1.x | Reverse proxy & load balancer |
+| **Containerization** | Docker | 24.x | Application containerization |
+| **Orchestration** | Kubernetes | 1.28.x | Container orchestration |
+
+</div>
+
+### 🔄 Communication Protocols
+
+```mermaid
+graph TB
+    subgraph "Client Layer"
+        A[🌐 Web Browser]
+        B[📱 Mobile App]
+    end
+    
+    subgraph "CDN & Load Balancer"
+        C[🚀 Cloudflare CDN]
+        D[⚖️ Load Balancer]
+    end
+    
+    subgraph "Application Layer"
+        E[🐳 Next.js Container]
+        F[🐍 Django Container]
+    end
+    
+    subgraph "Data Layer"
+        G[🐘 PostgreSQL]
+        H[⚡ Redis]
+        I[☁️ File Storage]
+    end
+    
+    A -->|HTTPS/HTTP2| C
+    B -->|HTTPS/HTTP2| C
+    C -->|SSL/TLS| D
+    D -->|HTTP| E
+    E -->|REST API| F
+    F -->|SQL| G
+    F -->|Cache| H
+    F -->|Files| I
+    
+    style A fill:#e3f2fd
+    style B fill:#e3f2fd
+    style E fill:#f3e5f5
+    style F fill:#e8f5e8
+    style G fill:#fff3e0
+```
+
+### 🛡️ Security Architecture
+
+```mermaid
+graph LR
+    subgraph "Authentication Flow"
+        A1[📧 Email OTP]
+        A2[🔐 JWT Tokens]
+        A3[🔄 Refresh Tokens]
+        A4[⏰ Session Management]
+    end
+    
+    subgraph "Authorization"
+        B1[👥 Role-Based Access]
+        B2[🛡️ Permission Guards]
+        B3[🔒 API Rate Limiting]
+        B4[🚨 Activity Monitoring]
+    end
+    
+    subgraph "Data Protection"
+        C1[🔒 Data Encryption]
+        C2[🛡️ SQL Injection Prevention]
+        C3[🚫 XSS Protection]
+        C4[📊 Audit Logging]
+    end
+    
+    A1 --> A2
+    A2 --> A3
+    A3 --> A4
+    
+    A4 --> B1
+    B1 --> B2
+    B2 --> B3
+    B3 --> B4
+    
+    B4 --> C1
+    C1 --> C2
+    C2 --> C3
+    C3 --> C4
+    
+    style A1 fill:#e3f2fd
+    style B1 fill:#f3e5f5
+    style C1 fill:#e8f5e8
+```
 
 | Category | Technologies |
 |----------|-------------|
@@ -367,7 +731,7 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 ```
 MIT License
 
-Copyright (c) 2024 Naman Kumar
+Copyright (c) 2025
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -436,7 +800,7 @@ If Saarthi has helped you or inspired your project, please consider:
 
 ---
 
-**Made with ❤️ by [Naman Kumar](https://github.com/Naman-56-56) for the future of student success**
+**Made with ❤️ by [Ankit Pal](https://github.com/Ankit500ak) &[Naman Sharma](https://github.com/Naman-56-56) for the future of student success**
 
 *"Saarthi - Where Dreams Meet Opportunities"*
 
