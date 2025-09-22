@@ -718,7 +718,7 @@ Thanks to all the amazing people who have contributed to Saarthi!
 ![GitHub issues](https://img.shields.io/github/issues/Naman-56-56/saarthi)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/Naman-56-56/saarthi)
 
-[![GitHub Activity Graph](https://activity-graph.herokuapp.com/graph?username=Naman-56-56&repo=saarthi&theme=github)](https://github.com/Naman-56-56/saarthi)
+[![GitHub Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=Naman-56-56&theme=github-compact)](https://github.com/Naman-56-56/saarthi)
 
 </div>
 
