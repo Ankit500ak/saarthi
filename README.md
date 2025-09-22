@@ -84,17 +84,17 @@ graph TD
 
 ---
 
-## 📈 System Architecture Visualization
+## 📈 Architecture Visualization
 
 <div align="center">
 
-### 🎯 Complete System Overview
+### 🎯 Complete Architecture Overview
 
-Below is our comprehensive system architecture showing all components, data flows, and integrations:
+Below is our comprehensive architecture showing all components, data flows, and integrations:
 
-<img src="https://raw.githubusercontent.com/Naman-56-56/saarthi/main/docs/system-architecture.png" alt="Saarthi Complete System Architecture" width="90%" style="border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.1); border: 1px solid #e1e5e9;">
+<img src="https://raw.githubusercontent.com/Naman-56-56/saarthi/main/docs/architecture.png" alt="Saarthi Architecture" width="90%" style="border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.1); border: 1px solid #e1e5e9;">
 
-*Interactive System Architecture & Communication Flow Diagram*
+*Interactive Architecture & Communication Flow Diagram*
 
 </div>
 
