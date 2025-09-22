@@ -1,194 +1,155 @@
-<div align="center">
-
-# 🎯 Saarthi: PM Youna Portal
-
-<img src="https://img.shields.io/badge/Next.js-14.2.25-black?style=for-the-badge&logo=next.js&logoColor=white" alt="Next.js" />
-<img src="https://img.shields.io/badge/Django-4.2+-092E20?style=for-the-badge&logo=django&logoColor=white" alt="Django" />
-<img src="https://img.shields.io/badge/TypeScript-5.0+-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
-<img src="https://img.shields.io/badge/Tailwind_CSS-4.1.9-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" />
-<img src="https://img.shields.io/badge/Python-3.9+-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python" />
-
-### 🚀 Connecting Students with Government Internship Opportunities
-
-*A modern, AI-powered platform that bridges the gap between talented students and meaningful government internships through intelligent matching and streamlined applications.*
-
-[🌟 **Live Demo**](https://saarthi-demo.vercel.app) • [📖 **Documentation**](https://docs.saarthi.dev) • [🐛 **Report Bug**](https://github.com/Naman-56-56/saarthi/issues) • [💡 **Request Feature**](https://github.com/Naman-56-56/saarthi/issues)
-
----
-
-</div>
-
-## ✨ What Makes Saarthi Special?
-
-<table>
-<tr>
-<td width="50%">
-
-### 🎯 **Smart Matching**
-AI-powered recommendations that understand your skills, interests, and career goals to suggest the perfect internship opportunities.
-
-### 🔐 **Secure & Reliable**
-Enterprise-grade security with OTP verification, secure data handling, and robust authentication systems.
-
-</td>
-<td width="50%">
-
-### 📊 **Progress Tracking**
-Real-time analytics, skill-based leaderboards, and achievement badges to gamify your internship journey.
-
-### 🎨 **Modern Experience**
-Beautiful, responsive design with dark/light themes and smooth animations for an engaging user experience.
-
-</td>
-</tr>
-</table>
-
----
-
-## 🚀 Key Features
+# 🎯 Saarthi - PM Yuva Portal
 
 <div align="center">
 
-| Feature | Description | Status |
-|---------|-------------|--------|
-| 🔐 **Authentication** | Secure sign-up/login with email OTP verification | ✅ Complete |
-| 🎯 **Smart Recommendations** | AI-powered internship matching using ML algorithms | ✅ Complete |
-| 📋 **Profile Management** | Comprehensive profile builder with resume upload | ✅ Complete |
-| 🏆 **Leaderboard System** | Skill-based rankings and achievement tracking | ✅ Complete |
-| 📱 **Responsive Design** | Mobile-first design with theme switching | ✅ Complete |
-| 👨‍💼 **Admin Dashboard** | Complete management system for internships & users | ✅ Complete |
+![Saarthi Banner](https://via.placeholder.com/800x200/4F46E5/FFFFFF?text=Saarthi+%E2%80%A2+Bridging+Dreams+to+Opportunities)
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Django](https://img.shields.io/badge/Django-092E20?style=flat&logo=django&logoColor=green)](https://www.djangoproject.com/)
+[![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat&logo=nextdotjs&logoColor=white)](https://nextjs.org/)
+[![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)](https://python.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+
+**🌟 Connecting Students with Government Internships through AI-Powered Career Guidance**
+
+[🚀 Live Demo](https://kw2k31cw-3000.inc1.devtunnels.ms/) • [📚 Documentation](#-documentation) • [🐛 Report Bug](https://github.com/Naman-56-56/saarthi/issues) • [💡 Request Feature](https://github.com/Naman-56-56/saarthi/issues)
 
 </div>
 
 ---
 
-## 🛠️ Technology Stack
+## 🌈 What is Saarthi?
+
+<div align="center">
+<img src="https://via.placeholder.com/600x300/F3F4F6/374151?text=Saarthi+Dashboard+Preview" alt="Saarthi Dashboard" width="80%" style="border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+</div>
+
+**Saarthi** (meaning "Guide" in Hindi) is a revolutionary full-stack platform that bridges the gap between ambitious students and government internship opportunities. Powered by cutting-edge AI and machine learning, Saarthi transforms the way students discover, apply for, and secure meaningful internships in the public sector.
+
+### 🎭 The Problem We Solve
+
+- 📊 **Fragmented Information**: Government internships scattered across multiple platforms
+- 🎯 **Mismatched Applications**: Students applying for unsuitable positions
+- ⏰ **Time-Consuming Process**: Manual searching and application tracking
+- 📈 **Limited Guidance**: Lack of personalized career recommendations
+
+---
+
+## ✨ Key Features
 
 <div align="center">
 
-### Frontend Architecture
-\`\`\`mermaid
+| 🔐 **Secure Authentication** | 🎯 **Smart Matching** | 📊 **Progress Tracking** |
+|:---:|:---:|:---:|
+| OTP-based verification with email integration | AI-powered recommendations using ML algorithms | Real-time application status and analytics |
+| Multi-factor authentication support | Skill-based internship matching | Achievement badges and leaderboards |
+
+</div>
+
+### 🚀 Core Capabilities
+
+```mermaid
 graph TD
-    A[Next.js 14] --> B[React 18]
-    A --> C[TypeScript]
-    B --> D[Tailwind CSS]
-    B --> E[Framer Motion]
-    B --> F[shadcn/ui]
-    C --> G[React Hook Form]
-    C --> H[Zod Validation]
-\`\`\`
+    A[Student Registration] --> B[Profile Creation]
+    B --> C[AI Analysis]
+    C --> D[Personalized Recommendations]
+    D --> E[Application Management]
+    E --> F[Progress Tracking]
+    F --> G[Success Metrics]
+    
+    style A fill:#e1f5fe
+    style C fill:#f3e5f5
+    style D fill:#e8f5e8
+    style G fill:#fff3e0
+```
 
-### Backend Architecture
-\`\`\`mermaid
-graph TD
-    I[Django 4.2+] --> J[Django REST Framework]
-    I --> K[SQLite/PostgreSQL]
-    J --> L[scikit-learn]
-    J --> M[pandas]
-    K --> N[User Management]
-    K --> O[Internship Data]
-\`\`\`
+#### 🎨 User Experience
+- **🌓 Dark/Light Mode**: Adaptive theming for comfortable browsing
+- **📱 Mobile Responsive**: Seamless experience across all devices
+- **⚡ Lightning Fast**: Optimized performance with Next.js
+- **🎭 Intuitive UI**: Modern design with Tailwind CSS
 
-</div>
+#### 🧠 AI-Powered Intelligence
+- **🤖 Machine Learning**: scikit-learn powered recommendation engine
+- **📈 Predictive Analytics**: Career path suggestions based on skills
+- **🎯 Smart Filtering**: Advanced search with multiple parameters
+- **📊 Data Insights**: Comprehensive analytics dashboard
 
-<table align="center">
-<tr>
-<th>Category</th>
-<th>Technologies</th>
-</tr>
-<tr>
-<td><strong>Frontend</strong></td>
-<td>
-<img src="https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=next.js&logoColor=white" />
-<img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black" />
-<img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white" />
-<img src="https://img.shields.io/badge/Tailwind-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white" />
-</td>
-</tr>
-<tr>
-<td><strong>Backend</strong></td>
-<td>
-<img src="https://img.shields.io/badge/Django-092E20?style=flat-square&logo=django&logoColor=white" />
-<img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white" />
-<img src="https://img.shields.io/badge/SQLite-003B57?style=flat-square&logo=sqlite&logoColor=white" />
-</td>
-</tr>
-<tr>
-<td><strong>AI/ML</strong></td>
-<td>
-<img src="https://img.shields.io/badge/scikit--learn-F7931E?style=flat-square&logo=scikit-learn&logoColor=white" />
-<img src="https://img.shields.io/badge/pandas-150458?style=flat-square&logo=pandas&logoColor=white" />
-<img src="https://img.shields.io/badge/joblib-FF6B6B?style=flat-square" />
-</td>
-</tr>
-</table>
+#### 👥 Administrative Excellence
+- **🛠️ Django Admin**: Comprehensive backend management
+- **📋 Content Management**: Easy internship listing updates
+- **📊 User Analytics**: Detailed user behavior insights
+- **🔧 System Monitoring**: Real-time application health checks
 
 ---
 
-## 📦 Project Architecture
-
-\`\`\`
-saarthi/
-├── 🎨 frontend/                 # Next.js Frontend Application
-│   ├── 📱 app/                  # App Router pages & layouts
-│   │   ├── globals.css          # Global styles & theme variables
-│   │   ├── layout.tsx           # Root layout with providers
-│   │   └── page.tsx             # Landing page
-│   ├── 🧩 components/           # Reusable UI components
-│   │   ├── ui/                  # shadcn/ui component library
-│   │   ├── theme-provider.tsx   # Theme context provider
-│   │   └── theme-toggle.tsx     # Dark/light mode switcher
-│   ├── 🎣 hooks/                # Custom React hooks
-│   ├── 📚 lib/                  # Utility functions & configs
-│   └── 🖼️ public/               # Static assets & images
-├── 🔧 saarthi/                  # Django Backend Application
-│   ├── 👥 users/                # User management & authentication
-│   ├── 🎯 recommendations/      # ML-powered recommendation engine
-│   ├── ⚙️ saarthi/              # Project settings & configuration
-│   └── 🚀 manage.py             # Django management commands
-├── 📋 requirements.txt          # Python dependencies
-├── 🔐 .env.example              # Environment variables template
-└── 📖 README.md                 # This beautiful documentation
-\`\`\`
-
----
-
-## ⚡ Quick Start Guide
-
-### 🔧 Prerequisites
+## 🏗️ Architecture & Tech Stack
 
 <div align="center">
 
-| Requirement | Version | Download |
-|-------------|---------|----------|
-| **Python** | 3.9+ | [Download](https://python.org/downloads/) |
-| **Node.js** | 18+ | [Download](https://nodejs.org/) |
-| **pnpm** | Latest | `npm install -g pnpm` |
-| **Git** | Latest | [Download](https://git-scm.com/) |
+### 🎨 Frontend Architecture
+```
+┌─────────────────────────────────────────────┐
+│                 Next.js App                 │
+├─────────────────┬───────────────────────────┤
+│   React Pages   │     TypeScript Logic      │
+├─────────────────┼───────────────────────────┤
+│ Tailwind Styles │    Custom Hooks & Utils   │
+├─────────────────┴───────────────────────────┤
+│           Responsive Components             │
+└─────────────────────────────────────────────┘
+```
+
+### 🔧 Backend Architecture
+```
+┌─────────────────────────────────────────────┐
+│              Django Backend                 │
+├─────────────────┬───────────────────────────┤
+│  REST API       │    Authentication         │
+├─────────────────┼───────────────────────────┤
+│  ML Engine      │    Database Models        │
+├─────────────────┼───────────────────────────┤
+│  Admin Panel    │    Email Services         │
+└─────────────────┴───────────────────────────┘
+```
 
 </div>
 
-### 🚀 Installation
+### 🛠️ Technology Stack
+
+| Category | Technologies |
+|----------|-------------|
+| **Frontend** | ![Next.js](https://img.shields.io/badge/-Next.js-000000?style=flat&logo=nextdotjs) ![React](https://img.shields.io/badge/-React-61DAFB?style=flat&logo=react&logoColor=black) ![TypeScript](https://img.shields.io/badge/-TypeScript-007ACC?style=flat&logo=typescript&logoColor=white) ![Tailwind](https://img.shields.io/badge/-Tailwind-38B2AC?style=flat&logo=tailwind-css&logoColor=white) |
+| **Backend** | ![Django](https://img.shields.io/badge/-Django-092E20?style=flat&logo=django) ![DRF](https://img.shields.io/badge/-DRF-092E20?style=flat&logo=django) ![Python](https://img.shields.io/badge/-Python-3776AB?style=flat&logo=python&logoColor=white) |
+| **AI/ML** | ![scikit-learn](https://img.shields.io/badge/-scikit--learn-F7931E?style=flat&logo=scikit-learn&logoColor=white) ![Pandas](https://img.shields.io/badge/-Pandas-150458?style=flat&logo=pandas) ![Joblib](https://img.shields.io/badge/-Joblib-FF6B6B?style=flat) |
+| **Database** | ![SQLite](https://img.shields.io/badge/-SQLite-003B57?style=flat&logo=sqlite) ![PostgreSQL](https://img.shields.io/badge/-PostgreSQL-336791?style=flat&logo=postgresql&logoColor=white) |
+| **Tools** | ![Git](https://img.shields.io/badge/-Git-F05032?style=flat&logo=git&logoColor=white) ![VS Code](https://img.shields.io/badge/-VS%20Code-007ACC?style=flat&logo=visual-studio-code) |
+
+---
+
+## 🚀 Quick Start Guide
+
+### 📋 Prerequisites
+
+Before you begin, ensure you have the following installed:
+- ![Python](https://img.shields.io/badge/Python-3.8+-3776AB?style=flat&logo=python&logoColor=white)
+- ![Node.js](https://img.shields.io/badge/Node.js-16+-339933?style=flat&logo=nodedotjs&logoColor=white)
+- ![npm](https://img.shields.io/badge/npm-8+-CB3837?style=flat&logo=npm&logoColor=white) or ![pnpm](https://img.shields.io/badge/pnpm-latest-F69220?style=flat&logo=pnpm&logoColor=white)
+
+### ⚡ Installation Steps
 
 <details>
-<summary><strong>📥 1. Clone & Setup</strong></summary>
+<summary><b>🔽 Click to expand installation guide</b></summary>
 
-\`\`\`bash
-# Clone the repository
+#### 1️⃣ Clone the Repository
+```bash
 git clone https://github.com/Naman-56-56/saarthi.git
 cd saarthi
+```
 
-# Create environment file
-cp .env.example .env
-# Edit .env with your configuration
-\`\`\`
-
-</details>
-
-<details>
-<summary><strong>🐍 2. Backend Setup (Django)</strong></summary>
-
-\`\`\`bash
+#### 2️⃣ Backend Setup (Django)
+```bash
 # Navigate to backend directory
 cd saarthi
 
@@ -196,13 +157,17 @@ cd saarthi
 python -m venv venv
 
 # Activate virtual environment
-# Windows:
+# Windows
 venv\Scripts\activate
-# macOS/Linux:
+# macOS/Linux
 source venv/bin/activate
 
 # Install dependencies
 pip install -r requirements.txt
+
+# Setup environment variables
+cp .env.example .env
+# Edit .env with your configuration
 
 # Run migrations
 python manage.py migrate
@@ -212,154 +177,175 @@ python manage.py createsuperuser
 
 # Start Django server
 python manage.py runserver
-\`\`\`
+```
 
-**🎉 Backend running at:** `http://localhost:8000`
-
-</details>
-
-<details>
-<summary><strong>⚛️ 3. Frontend Setup (Next.js)</strong></summary>
-
-\`\`\`bash
-# Navigate to frontend directory
+#### 3️⃣ Frontend Setup (Next.js)
+```bash
+# Open new terminal and navigate to frontend
 cd frontend
 
 # Install dependencies
-pnpm install
+pnpm install  # or npm install
 
 # Start development server
-pnpm dev
-\`\`\`
+pnpm dev     # or npm run dev
+```
 
-**🎉 Frontend running at:** `http://localhost:3000`
+#### 4️⃣ Access Your Application
+- 🌐 **Frontend**: [http://localhost:3000](http://localhost:3000)
+- ⚙️ **Backend API**: [http://localhost:8000](http://localhost:8000)
+- 👨‍💼 **Admin Panel**: [http://localhost:8000/admin](http://localhost:8000/admin)
 
 </details>
 
-### 🌐 Access Points
-
-<div align="center">
-
-| Service | URL | Description |
-|---------|-----|-------------|
-| 🎨 **Frontend** | [localhost:3000](http://localhost:3000) | Main application interface |
-| 🔧 **Backend API** | [localhost:8000](http://localhost:8000) | Django REST API |
-| 👨‍💼 **Admin Panel** | [localhost:8000/admin](http://localhost:8000/admin) | Django admin interface |
-
-</div>
-
 ---
 
-## 🔐 Environment Configuration
+## 🔧 Configuration
 
-<details>
-<summary><strong>📧 Email Configuration</strong></summary>
+### 📧 Email Configuration
 
-\`\`\`env
-# Gmail SMTP Configuration
+Create a `.env` file in the root directory:
+
+```env
+# Email Settings (Required for OTP)
 EMAIL_HOST=smtp.gmail.com
 EMAIL_PORT=587
 EMAIL_HOST_USER=your_email@gmail.com
-EMAIL_HOST_PASSWORD=your_app_password
+EMAIL_HOST_PASSWORD=your_app_password  # Use App Password for Gmail
 EMAIL_USE_TLS=True
 DEFAULT_FROM_EMAIL=your_email@gmail.com
-\`\`\`
 
-> **💡 Pro Tip:** Use Gmail App Passwords for enhanced security!
-
-</details>
-
-<details>
-<summary><strong>🗄️ Database Configuration</strong></summary>
-
-\`\`\`env
-# SQLite (Default - Development)
-DATABASE_URL=sqlite:///db.sqlite3
-
-# PostgreSQL (Production)
+# Database (Optional - SQLite is default)
 DATABASE_URL=postgresql://user:password@localhost:5432/saarthi
-\`\`\`
 
-</details>
+# Security (Production)
+SECRET_KEY=your-secret-key
+DEBUG=False
+ALLOWED_HOSTS=yourdomain.com
+```
+
+### 🔒 Security Setup
+
+For Gmail SMTP, enable 2FA and create an App Password:
+1. Go to Google Account Settings
+2. Enable 2-Factor Authentication
+3. Generate App Password for "Mail"
+4. Use this password in `EMAIL_HOST_PASSWORD`
 
 ---
 
-## 🎯 Usage Examples
+## 📁 Project Structure
 
-### 🔐 User Authentication Flow
+```
+saarthi/
+├── 🎨 frontend/                    # Next.js Frontend Application
+│   ├── 📱 app/                     # App Router Pages & Layouts
+│   │   ├── (auth)/                 # Authentication Pages
+│   │   ├── dashboard/              # User Dashboard
+│   │   ├── internships/            # Internship Listings
+│   │   └── profile/                # User Profile Management
+│   ├── 🧩 components/              # Reusable UI Components
+│   │   ├── ui/                     # Base UI Components
+│   │   ├── forms/                  # Form Components
+│   │   └── charts/                 # Data Visualization
+│   ├── 🔧 hooks/                   # Custom React Hooks
+│   ├── 📚 lib/                     # Utility Functions & Constants
+│   └── 🌍 public/                  # Static Assets & Images
+├── 🔧 saarthi/                     # Django Backend Application
+│   ├── 👤 users/                   # User Management & Authentication
+│   │   ├── models.py               # User & Profile Models
+│   │   ├── serializers.py          # API Serializers
+│   │   └── views.py                # API Views & Logic
+│   ├── 💼 recommendations/         # Internship & ML Engine
+│   │   ├── models.py               # Internship Models
+│   │   ├── ml_engine.py            # Machine Learning Logic
+│   │   └── recommendation_service.py # Recommendation Algorithms
+│   ├── ⚙️ saarthi/                 # Project Configuration
+│   │   ├── settings.py             # Django Settings
+│   │   ├── urls.py                 # URL Configuration
+│   │   └── wsgi.py                 # WSGI Configuration
+│   └── 📊 static/                  # Static Files (CSS, JS, Images)
+├── 📋 requirements.txt             # Python Dependencies
+├── 🔒 .env.example                 # Environment Variables Template
+└── 📖 README.md                    # Project Documentation
+```
 
-\`\`\`python
-# Django Backend - OTP Verification
-from users.models import User
-from users.utils import send_otp_email
+---
 
-# Generate and send OTP
-user = User.objects.get(email="student@example.com")
-otp_code = generate_otp()
-send_otp_email(user.email, otp_code)
-\`\`\`
+## 🎯 API Documentation
 
-### 🤖 AI Recommendation System
+### 🔐 Authentication Endpoints
 
-\`\`\`python
-# ML-powered internship matching
-from recommendations.models import InternshipRecommendation
-from recommendations.ml_engine import RecommendationEngine
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `POST` | `/api/auth/register/` | User registration with OTP |
+| `POST` | `/api/auth/login/` | User login |
+| `POST` | `/api/auth/verify-otp/` | OTP verification |
+| `POST` | `/api/auth/logout/` | User logout |
 
-engine = RecommendationEngine()
-recommendations = engine.get_recommendations(
-    user_id=user.id,
-    skills=["Python", "Django", "React"],
-    preferences={"location": "Remote", "duration": "3 months"}
-)
-\`\`\`
+### 💼 Internship Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/api/internships/` | List all internships |
+| `GET` | `/api/internships/{id}/` | Get specific internship |
+| `POST` | `/api/internships/apply/` | Apply for internship |
+| `GET` | `/api/recommendations/` | Get AI recommendations |
+
+### 📊 Analytics Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/api/analytics/dashboard/` | User dashboard data |
+| `GET` | `/api/analytics/leaderboard/` | Skill-based rankings |
+| `GET` | `/api/analytics/progress/` | Application progress |
 
 ---
 
 ## 🤝 Contributing
 
+We love contributions! Here's how you can help make Saarthi even better:
+
 <div align="center">
 
-### 🌟 We Welcome Contributors!
+### 🌟 Ways to Contribute
 
-*Help us make Saarthi even better for students across the nation*
+| 🐛 **Bug Reports** | 💡 **Feature Requests** | 🔧 **Code Contributions** |
+|:---:|:---:|:---:|
+| Found a bug? Report it! | Have an idea? Share it! | Want to code? Fork it! |
 
 </div>
 
-<details>
-<summary><strong>🚀 Getting Started</strong></summary>
+### 📝 Contribution Steps
 
 1. **🍴 Fork** the repository
 2. **🌿 Create** your feature branch
-   \`\`\`bash
+   ```bash
    git checkout -b feature/amazing-feature
-   \`\`\`
+   ```
 3. **💾 Commit** your changes
-   \`\`\`bash
+   ```bash
    git commit -m 'Add some amazing feature'
-   \`\`\`
+   ```
 4. **📤 Push** to the branch
-   \`\`\`bash
+   ```bash
    git push origin feature/amazing-feature
-   \`\`\`
-5. **🔄 Open** a Pull Request
+   ```
+5. **🚀 Open** a Pull Request
 
-</details>
+### 👥 Contributors
 
-<details>
-<summary><strong>📋 Contribution Guidelines</strong></summary>
+<div align="center">
 
-- ✅ Follow existing code style and conventions
-- ✅ Write clear, descriptive commit messages
-- ✅ Add tests for new features
-- ✅ Update documentation as needed
-- ✅ Ensure all tests pass before submitting
+Thanks to all the amazing people who have contributed to Saarthi!
 
-</details>
+[![Contributors](https://contrib.rocks/image?repo=Naman-56-56/saarthi)](https://github.com/Naman-56-56/saarthi/graphs/contributors)
+
+</div>
 
 ---
 
-## 📊 Project Stats
+## 📊 Project Statistics
 
 <div align="center">
 
@@ -368,9 +354,7 @@ recommendations = engine.get_recommendations(
 ![GitHub issues](https://img.shields.io/github/issues/Naman-56-56/saarthi)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/Naman-56-56/saarthi)
 
-![GitHub last commit](https://img.shields.io/github/last-commit/Naman-56-56/saarthi)
-![GitHub repo size](https://img.shields.io/github/repo-size/Naman-56-56/saarthi)
-![Lines of code](https://img.shields.io/tokei/lines/github/Naman-56-56/saarthi)
+[![GitHub Activity Graph](https://activity-graph.herokuapp.com/graph?username=Naman-56-56&repo=saarthi&theme=github)](https://github.com/Naman-56-56/saarthi)
 
 </div>
 
@@ -378,98 +362,88 @@ recommendations = engine.get_recommendations(
 
 ## 📄 License
 
-<div align="center">
-
 This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
 
-*Feel free to use, modify, and distribute this project as per the license terms.*
+```
+MIT License
+
+Copyright (c) 2024 Naman Kumar
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software...
+```
+
+---
+
+## 🙏 Acknowledgments
+
+<div align="center">
+
+### 💎 Built With Love Using
+
+[![Django](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=green)](https://www.djangoproject.com/)
+[![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)](https://nextjs.org/)
+[![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![scikit-learn](https://img.shields.io/badge/scikit_learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)](https://scikit-learn.org/)
+
+### 🎯 Special Thanks
+
+- **🏛️ Government of India** - For inspiring the PM Yuva initiative
+- **👥 Open Source Community** - For amazing tools and libraries
+- **🧠 AI/ML Community** - For advancing recommendation algorithms
+- **🎨 Design Community** - For modern UI/UX inspirations
 
 </div>
 
 ---
 
-## 🙏 Acknowledgements
+## 📞 Contact & Support
 
 <div align="center">
 
-### 💝 Special Thanks To
+### 💬 Get in Touch
 
-<table>
-<tr>
-<td align="center">
-<img src="https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white" /><br>
-<strong>Django Team</strong><br>
-<em>Robust backend framework</em>
-</td>
-<td align="center">
-<img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white" /><br>
-<strong>Vercel Team</strong><br>
-<em>Amazing React framework</em>
-</td>
-<td align="center">
-<img src="https://img.shields.io/badge/Tailwind-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" /><br>
-<strong>Tailwind Labs</strong><br>
-<em>Beautiful utility-first CSS</em>
-</td>
-</tr>
-<tr>
-<td align="center">
-<img src="https://img.shields.io/badge/scikit--learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white" /><br>
-<strong>scikit-learn</strong><br>
-<em>Powerful ML algorithms</em>
-</td>
-<td align="center">
-<img src="https://img.shields.io/badge/shadcn/ui-000000?style=for-the-badge&logo=shadcnui&logoColor=white" /><br>
-<strong>shadcn/ui</strong><br>
-<em>Beautiful component library</em>
-</td>
-<td align="center">
-<img src="https://img.shields.io/badge/Framer_Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white" /><br>
-<strong>Framer Motion</strong><br>
-<em>Smooth animations</em>
-</td>
-</tr>
-</table>
+[![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:codeweave12@gmail.com)
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Naman-56-56)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/naman-kumar)
 
-</div>
+### 🆘 Need Help?
 
----
-
-## 💬 Support & Contact
-
-<div align="center">
-
-### 🤔 Need Help?
-
-<table>
-<tr>
-<td align="center">
-<strong>📧 Email Support</strong><br>
-<a href="mailto:codeweave12@gmail.com">codeweave12@gmail.com</a>
-</td>
-<td align="center">
-<strong>🐛 Bug Reports</strong><br>
-<a href="https://github.com/Naman-56-56/saarthi/issues">GitHub Issues</a>
-</td>
-<td align="center">
-<strong>💡 Feature Requests</strong><br>
-<a href="https://github.com/Naman-56-56/saarthi/discussions">GitHub Discussions</a>
-</td>
-</tr>
-</table>
-
----
+- 📚 **Documentation**: Check our comprehensive guides above
+- 🐛 **Bug Reports**: [Create an issue](https://github.com/Naman-56-56/saarthi/issues/new?template=bug_report.md)
+- 💡 **Feature Requests**: [Request a feature](https://github.com/Naman-56-56/saarthi/issues/new?template=feature_request.md)
+- 💬 **General Questions**: [Start a discussion](https://github.com/Naman-56-56/saarthi/discussions)
 
 ### 🌟 Show Your Support
 
-*If this project helped you, please consider giving it a ⭐ on GitHub!*
+If Saarthi has helped you or inspired your project, please consider:
 
-**Made with ❤️ by the Saarthi Team**
+[![Star this repo](https://img.shields.io/badge/⭐-Star%20this%20repo-yellow?style=for-the-badge)](https://github.com/Naman-56-56/saarthi)
+[![Follow on GitHub](https://img.shields.io/badge/👤-Follow%20on%20GitHub-blue?style=for-the-badge)](https://github.com/Naman-56-56)
 
 </div>
 
 ---
 
 <div align="center">
-<sub>Built with modern technologies • Designed for the future • Made in India 🇮🇳</sub>
+
+### 🚀 Ready to Transform Internship Discovery?
+
+**[Get Started Now](https://kw2k31cw-3000.inc1.devtunnels.ms/)** • **[View Demo](https://kw2k31cw-3000.inc1.devtunnels.ms/)** • **[Join Community](https://github.com/Naman-56-56/saarthi/discussions)**
+
+---
+
+**Made with ❤️ by [Naman Kumar](https://github.com/Naman-56-56) for the future of student success**
+
+*"Saarthi - Where Dreams Meet Opportunities"*
+
+</div>
+
+---
+
+<div align="center">
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=100&section=footer" width="100%" />
 </div>
