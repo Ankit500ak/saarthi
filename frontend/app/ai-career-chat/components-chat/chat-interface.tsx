@@ -6,7 +6,9 @@ import { Brain, Link, Folder, Mic } from "lucide-react"
 import { LiquidMetal, PulsingBorder } from "@paper-design/shaders-react"
 import { motion } from "framer-motion"
 import { useState } from "react"
+import { apiPost } from "@/lib/api";
 import { v4 as uuidv4 } from "uuid";
+import ReactMarkdown from "react-markdown";
 
 interface Message {
   id: string
@@ -20,19 +22,39 @@ export function ChatInterface() {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState<Message[]>([]);
 
-  const handleSend = (e: React.FormEvent) => {
+  const handleSend = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!message.trim()) return;
-    setMessages(prev => [
-      ...prev,
-      {
-        id: uuidv4(),
-        content: message,
-        role: "user",
-        timestamp: new Date(),
-      },
-    ]);
+    const userMsg = {
+      id: uuidv4(),
+      content: message,
+      role: "user" as const,
+      timestamp: new Date(),
+    };
+    setMessages(prev => [...prev, userMsg]);
     setMessage("");
+    try {
+  const res = await apiPost<{ answer: string }>("/api/gemini-answer", { message });
+      setMessages(prev => [
+        ...prev,
+        {
+          id: uuidv4(),
+          content: res.answer,
+          role: "assistant" as const,
+          timestamp: new Date(),
+        },
+      ]);
+    } catch (err) {
+      setMessages(prev => [
+        ...prev,
+        {
+          id: uuidv4(),
+          content: "Sorry, I couldn't get a response from Gemini.",
+          role: "assistant" as const,
+          timestamp: new Date(),
+        },
+      ]);
+    }
   };
 
   return (
@@ -106,7 +128,7 @@ export function ChatInterface() {
             />
           </motion.div>
           <motion.p
-            className="text-white/40 text-sm font-light z-10"
+            className="text-white/40 text-[10px] font-light z-10"
             animate={{
               y: isFocused ? 50 : 0,
               opacity: isFocused ? 0 : 100,
@@ -123,11 +145,20 @@ export function ChatInterface() {
           </motion.p>
         </div>
         {/* Chat Messages Section - moved here and fixed */}
-        <div className="mb-6 max-h-64 overflow-y-auto flex flex-col gap-2 px-2">
+  <div className="mb-6 max-h-[32rem] overflow-y-auto flex flex-col gap-2 px-2 scrollbar-hide hide-scrollbar">
           {messages.map((msg) => (
-            <div key={msg.id} className="flex justify-end">
-              <div className="bg-orange-500 text-white px-4 py-2 rounded-lg max-w-xs break-words shadow">
-                {msg.content}
+            <div key={msg.id} className={msg.role === "user" ? "flex justify-end" : "flex justify-start"}>
+              <div className={
+                (msg.role === "user"
+                  ? "bg-orange-500 text-white"
+                  : "bg-zinc-800 text-orange-200") +
+                " px-4 py-2 rounded-lg max-w-lg break-words shadow text-xs prose prose-invert prose-p:my-1 prose-li:my-0 prose-ul:pl-4 prose-ol:pl-4"
+              }>
+                {msg.role === "assistant" ? (
+                  <ReactMarkdown>{msg.content}</ReactMarkdown>
+                ) : (
+                  msg.content
+                )}
               </div>
             </div>
           ))}
@@ -188,7 +219,7 @@ export function ChatInterface() {
             <form className="relative mb-6" onSubmit={handleSend}>
               <Textarea
                 placeholder="Type your message..."
-                className="min-h-[80px] resize-none bg-transparent border-none text-white text-base placeholder:text-zinc-500 focus:ring-0 focus:outline-none focus-visible:ring-0 focus-visible:outline-none [&:focus]:ring-0 [&:focus]:outline-none [&:focus-visible]:ring-0 [&:focus-visible]:outline-none"
+                className="min-h-[40px] h-10 resize-none bg-transparent border-none text-white text-base placeholder:text-zinc-500 focus:ring-0 focus:outline-none focus-visible:ring-0 focus-visible:outline-none [&:focus]:ring-0 [&:focus]:outline-none [&:focus-visible]:ring-0 [&:focus-visible]:outline-none"
                 value={message}
                 onChange={e => setMessage(e.target.value)}
                 onFocus={() => setIsFocused(true)}
