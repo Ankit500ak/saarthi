@@ -866,10 +866,10 @@ export function Saarthi() {
                                   <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
                                     <Bot className="h-6 w-6 text-primary" />
                                   </div>
-                                  <div>
+                                  <Link href="/ai-career-chat" className="block">
                                     <h3 className="font-medium">AI Career Chat</h3>
                                     <p className="text-sm text-muted-foreground">Get instant guidance</p>
-                                  </div>
+                                  </Link>
                                 </div>
                               </CardContent>
                             </Card>
