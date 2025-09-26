@@ -6,6 +6,7 @@ import { Brain, Link, Folder, Mic } from "lucide-react"
 import { LiquidMetal, PulsingBorder } from "@paper-design/shaders-react"
 import { motion } from "framer-motion"
 import { useState } from "react"
+import { v4 as uuidv4 } from "uuid";
 
 interface Message {
   id: string
@@ -16,9 +17,33 @@ interface Message {
 
 export function ChatInterface() {
   const [isFocused, setIsFocused] = useState(false)
+  const [message, setMessage] = useState("");
+  const [messages, setMessages] = useState<Message[]>([]);
+
+  const handleSend = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!message.trim()) return;
+    setMessages(prev => [
+      ...prev,
+      {
+        id: uuidv4(),
+        content: message,
+        role: "user",
+        timestamp: new Date(),
+      },
+    ]);
+    setMessage("");
+  };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-4">
+    <div className="flex flex-col items-center justify-center min-h-screen p-4 overflow-hidden">
+      {/* Daksh.ai Branding and Description */}
+      <div className="w-full max-w-2xl text-center mb-8">
+        <h1 className="text-3xl font-bold mb-2 text-orange-600">Daksh.ai</h1>
+        <p className="mb-4 text-gray-300">
+          Welcome to <span className="font-semibold text-orange-400">Daksh.ai</span>, your AI-powered career assistant. Ask anything about your career, jobs, or skills!
+        </p>
+      </div>
       <div className="w-full max-w-4xl relative">
         <div className="flex flex-row items-center mb-2">
           {/* Shader Circle */}
@@ -80,8 +105,6 @@ export function ChatInterface() {
               speed={5}
             />
           </motion.div>
-
-          {/* Greeting Text */}
           <motion.p
             className="text-white/40 text-sm font-light z-10"
             animate={{
@@ -98,6 +121,16 @@ export function ChatInterface() {
           >
             Hey there! I'm here to help with anything you need
           </motion.p>
+        </div>
+        {/* Chat Messages Section - moved here and fixed */}
+        <div className="mb-6 max-h-64 overflow-y-auto flex flex-col gap-2 px-2">
+          {messages.map((msg) => (
+            <div key={msg.id} className="flex justify-end">
+              <div className="bg-orange-500 text-white px-4 py-2 rounded-lg max-w-xs break-words shadow">
+                {msg.content}
+              </div>
+            </div>
+          ))}
         </div>
 
         <div className="relative">
@@ -152,14 +185,23 @@ export function ChatInterface() {
             }}
           >
             {/* Message Input */}
-            <div className="relative mb-6">
+            <form className="relative mb-6" onSubmit={handleSend}>
               <Textarea
-                placeholder=""
+                placeholder="Type your message..."
                 className="min-h-[80px] resize-none bg-transparent border-none text-white text-base placeholder:text-zinc-500 focus:ring-0 focus:outline-none focus-visible:ring-0 focus-visible:outline-none [&:focus]:ring-0 [&:focus]:outline-none [&:focus-visible]:ring-0 [&:focus-visible]:outline-none"
+                value={message}
+                onChange={e => setMessage(e.target.value)}
                 onFocus={() => setIsFocused(true)}
                 onBlur={() => setIsFocused(false)}
               />
-            </div>
+              <Button
+                type="submit"
+                className="absolute bottom-2 right-2 bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded"
+                disabled={!message.trim()}
+              >
+                Send
+              </Button>
+            </form>
 
             <div className="flex items-center justify-between">
               {/* Left side icons */}

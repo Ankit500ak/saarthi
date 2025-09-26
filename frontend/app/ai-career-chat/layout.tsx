@@ -13,9 +13,9 @@ const doto = Roboto({
 })
 
 export const metadata: Metadata = {
-  title: "v0 App",
-  description: "Created with v0",
-  generator: "v0.app",
+  title: "daksh.ai",
+  description: "a part of Sarthi",
+  generator: "daksh.ai",
 }
 
 export default function RootLayout({
