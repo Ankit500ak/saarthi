@@ -838,6 +838,43 @@ If Saarthi has helped you or inspired your project, please consider:
 
 ---
 
+## ❓ Frequently Asked Questions (FAQ)
+
+### 1. Who can use Saarthi?
+Saarthi is designed for students, educators, and government organizations looking to connect with internship opportunities in the public sector.
+
+### 2. Is Saarthi free to use?
+Yes! Saarthi is open-source and free for all users.
+
+### 3. How does the AI recommendation work?
+Saarthi uses machine learning models to analyze your profile, skills, and preferences to suggest the most relevant internships.
+
+### 4. How do I report a bug or request a feature?
+Please use the [GitHub Issues](https://github.com/Ankit500ak/saarthi/issues) page to report bugs or request new features.
+
+### 5. Can I contribute to Saarthi?
+Absolutely! See the [Contributing](#-contributing) section above for details.
+
+---
+
+## 🛠️ Troubleshooting
+
+### Common Issues
+
+**Q: The backend server won’t start or throws a migration error.**
+A: Make sure you have run all migrations with `python manage.py migrate` and your database is configured correctly in `.env`.
+
+**Q: The frontend does not load or shows a blank page.**
+A: Ensure all dependencies are installed (`pnpm install` or `npm install`) and the backend API is running.
+
+**Q: Email/OTP not received.**
+A: Double-check your email configuration in `.env` and ensure you are using an app password for Gmail.
+
+**Q: ML recommendations are not showing.**
+A: Make sure the ML model files are present and the backend has access to them. Check logs for errors.
+
+If you encounter other issues, please open an issue on GitHub or reach out via the contact links above.
+
 <div align="center">
 <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=100&section=footer" width="100%" />
 </div>
